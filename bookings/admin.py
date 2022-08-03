@@ -1,12 +1,8 @@
 from django.contrib import admin
-from .models import Route, Trip, Passenger
+from .models import Route, Trip, Passenger, Booking
 
 
-@admin.register(Route)
-class RouteAdmin(admin.ModelAdmin):
-
-    list_display = ('route_name',)
-
+admin.site.register(Route)
 
 @admin.register(Passenger)
 class PassengerAdmin(admin.ModelAdmin):
@@ -18,5 +14,10 @@ class PassengerAdmin(admin.ModelAdmin):
 @admin.register(Trip)
 class TripAdmin(admin.ModelAdmin):
 
-    list_display = ('trip_name', 'route_name', 'trip_date')
+    list_display = ('route_name', 'trip_date')
 
+
+@admin.register(Booking)
+class BookingAdmin(admin.ModelAdmin):
+
+    list_display = ('route_name', 'trip_date')
