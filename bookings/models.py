@@ -9,10 +9,10 @@ SAILING_EXPERIENCE = ((0, "None"), (1, "Some"), (2, "Lots"))
 
 class Route(models.Model):
     route_name = models.CharField(
-        'Route Name', max_length=200, null=False, blank=False)
+        'Route Name', max_length=200, null=False, blank=False, unique=True)
     description = models.TextField('Description', null=False, blank=False)
     duration = models.IntegerField('Duration (days)', null=False, blank=False)
-    distance = models.IntegerField('Distance (miles)', null=False, blank=False)
+    distance = models.IntegerField('Distance (nautical miles)', null=False, blank=False)
     featured_image = CloudinaryField('Image', default='placeholder')
 
     class Meta:
@@ -65,8 +65,10 @@ class Booking(models.Model):
         'Option to Crew', choices=CREW_OPTION, default=0)
     sailing_exp = models.IntegerField(
         'Previous Sailing Experience', choices=SAILING_EXPERIENCE, default=0)
-    special_assistance = models.CharField(
-        'Special Assistance Needs', max_length=200, blank=True)
+    special_assistance = models.TextField(
+        'Special Assistance Needs', blank=True)
+    comments = models.TextField(
+        'Any additional comments', blank=True)
     featured_image = CloudinaryField('Image', default='placeholder')
 
     class Meta:

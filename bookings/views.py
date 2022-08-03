@@ -1,3 +1,14 @@
 from django.shortcuts import render
+from django.views.generic import ListView, TemplateView
+from .models import Route
 
-# Create your views here.
+
+class HomePage(TemplateView):
+    template_name = 'index.html'
+
+
+class RouteList(ListView):
+    model = Route
+    queryset = Route.objects.order_by('route_name')
+    template_name = 'routes.html'
+    paginate_by = 4
