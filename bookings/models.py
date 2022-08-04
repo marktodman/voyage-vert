@@ -1,7 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
 
+STATUS = ((0, 'Draft'), (1, 'Published'))
 CABIN_TYPE = ((0, "Shared"), (1, "Private"))
 CREW_OPTION = ((0, "Passenger Only"), (1, "Prepared to Crew"))
 SAILING_EXPERIENCE = ((0, "None"), (1, "Some"), (2, "Lots"))
@@ -9,10 +11,12 @@ SAILING_EXPERIENCE = ((0, "None"), (1, "Some"), (2, "Lots"))
 
 class Route(models.Model):
     route_name = models.CharField(
-        'Route Name', max_length=200, null=False, blank=False, unique=True)
-    description = models.TextField('Description', null=False, blank=False)
+        'Route Name', max_length=200, blank=False, unique=True)
+    description = models.TextField('Description', blank=False)
     duration = models.IntegerField('Duration (days)', null=False, blank=False)
-    distance = models.IntegerField('Distance (nautical miles)', null=False, blank=False)
+    distance = models.IntegerField(
+        'Distance (nautical miles)', null=False, blank=False)
+    status = models.IntegerField(choices=STATUS, default=0)
     featured_image = CloudinaryField('Image', default='placeholder')
 
     class Meta:
@@ -22,30 +26,20 @@ class Route(models.Model):
         return self.route_name
 
 
-class Passenger(models.Model):
-    first_name = models.CharField(
-        'First Name', max_length=80, null=False, blank=False)
-    last_name = models.CharField(
-        'Last Name', max_length=80, null=False, blank=False)
-    email = models.EmailField('Email', max_length=200, blank=False)
-
-    def __str__(self):
-        return self.first_name + ' ' + self.last_name
-
-
 class Trip(models.Model):
     trip_date = models.DateField('Trip Date')
     route_name = models.ForeignKey(
-        Route, on_delete=models.CASCADE, blank=True, null=True)
-    description = models.TextField(null=False, blank=False)
+        Route, on_delete=models.CASCADE, blank=False, null=True)
+    description = models.TextField('Description', blank=False)
+    status = models.IntegerField(choices=STATUS, default=0)
     interest = models.ManyToManyField(
-        Passenger, related_name='trip_interest', blank=True)
+        User, related_name='trip_interest', blank=True)
 
     class Meta:
         ordering = ['trip_date']
 
     def __str__(self):
-        return self.trip_date
+        return str(self.trip_date)
 
     def expressions_of_interest(self):
         return self.interest.count()
@@ -53,11 +47,11 @@ class Trip(models.Model):
 
 class Booking(models.Model):
     trip_date = models.ForeignKey(
-        Trip, on_delete=models.CASCADE, blank=True, null=True)
+        Trip, on_delete=models.CASCADE, blank=False, null=True)
     route_name = models.ForeignKey(
-        Route, on_delete=models.CASCADE, blank=True, null=True)
-    passenger = models.ManyToManyField(
-        Passenger, related_name='trip_booking', blank=True)
+        Route, on_delete=models.CASCADE, blank=False, null=True)
+    passenger = models.ForeignKey(
+        User, on_delete=models.CASCADE, blank=False, null=True)
     number_passengers = models.IntegerField('Number of Passengers')
     cabin_type = models.IntegerField(
         'Cabin Type', choices=CABIN_TYPE, default=0)
@@ -69,10 +63,9 @@ class Booking(models.Model):
         'Special Assistance Needs', blank=True)
     comments = models.TextField(
         'Any additional comments', blank=True)
-    featured_image = CloudinaryField('Image', default='placeholder')
 
     class Meta:
         ordering = ['trip_date']
 
     def __str__(self):
-        return self.trip_date
+        return str(self.route_name)
