@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, TemplateView
+from django.views.generic import ListView, TemplateView, View
 from .models import Route, Trip
 
 
@@ -14,16 +14,19 @@ class RouteList(ListView):
     paginate_by = 4
 
 
-def route_trips(request, route_id):
-    route = Route.objects.get(id=route_id)
-    trips = route.trip_set.all()
-    route_name = route.route_name
-    route_image = route.featured_image
+class RouteTrips(View):
 
-    context = {
-        "trips": trips,
-        "route_name": route_name,
-        "route_image": route_image,
-    }
+    def get(self, request, route_id, *args, **kwargs):
+        queryset = Route.objects.filter(status=1)
+        route = get_object_or_404(queryset, id=route_id)
+        trips = route.trip_set.all()
+        route_name = route.route_name
+        route_image = route.featured_image
 
-    return render(request, 'route_trips.html', context=context)
+        context = {
+            "trips": trips,
+            "route_name": route_name,
+            "route_image": route_image,
+            }
+
+        return render(request, 'route_trips.html', context=context)
