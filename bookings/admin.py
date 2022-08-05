@@ -4,7 +4,6 @@ from .models import Route, Trip, Booking
 
 admin.site.register(Route)
 
-
 @admin.register(Trip)
 class TripAdmin(admin.ModelAdmin):
 
@@ -14,4 +13,6 @@ class TripAdmin(admin.ModelAdmin):
 class BookingAdmin(admin.ModelAdmin):
 
     list_display = ('passenger', 'route_name', 'trip_date')
-
+    ordering = ('passenger',)
+    search_fields = ('passenger', 'route_name')
+    list_filter = ('passenger', 'route_name', 'trip_date')

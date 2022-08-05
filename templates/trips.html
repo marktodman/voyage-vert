@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Trip Cards-->
+        <div class="col-12 mt-3">
+            <div class="row">
+                {% for trip in trip_list %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="image-container">
+                                <div class="image-flash">
+                                    <p class="route">Route: {{ trip.route_name }}</p>
+                                    <p class="">Date: {{ trip.trip_date }}</p>
+                                    <button class="btn btn-success">Book this trip</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:4 %}
+            </div>
+            <div class="row">
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        {%endblock%}

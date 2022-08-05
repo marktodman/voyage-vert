@@ -24,6 +24,7 @@
                                     <p class="description">{{ route.description }}</p>
                                     <p class="">Duration (days): {{ route.duration }}</p>
                                     <p class="">Distance (nautical miles): {{ route.distance }}</p>
+                                    <a href="{% url 'route-trips' route.id %}" class="btn btn-primary">View trips</a>
                                 </div>
                             </div>
                         </div>

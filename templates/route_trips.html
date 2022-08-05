@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ route_name }}</h1>
+<img class="card-img-top" src=" {{ route_image.url }}">
+{% for trip in trips %}
+<p>{{ trip.trip_date }}</p>
+<p>{{ trip.description }}</p>
+
+{% endfor %}
+
+{% endblock %}
