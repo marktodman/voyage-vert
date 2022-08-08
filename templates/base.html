@@ -44,7 +44,19 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'routes' %}">Routes</a>
                     </li>
-                </ul>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="{% url 'routes' %}"
+                            id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Trips
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                            {% for route in routes %}
+                            <li><a class="dropdown-item"
+                                    href="{% url 'route-trips' route.id %}">{{ route.route_name }}</a></li>
+                            {% endfor %}
+                        </ul>
+
             </div>
         </div>
     </nav>
