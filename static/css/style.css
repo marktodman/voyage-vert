@@ -1,7 +1,78 @@
 body {
-    background-color: #c7f9cc;
+    background-color: #22577a;
+    color: whitesmoke;
 }
 
-.nav-bg {
+
+/* Navbar */
+
+.navbar {
+    letter-spacing: 0.25rem;
     background-color: #22577a;
+    margin-bottom: 0;
+    border: 0;
+    letter-spacing: 4px;
+    opacity: 0.9;
+}
+
+.fixed-top {
+    margin-bottom: 10px;
+}
+
+.navbar li a,
+.navbar .navbar-brand {
+    color: whitesmoke !important;
+}
+
+.navbar-nav li a:hover {
+    color: #c7f9cc !important;
+}
+
+.dropdown-menu li a {
+    color: #22577a !important;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #22577a !important;
+    color: whitesmoke !important;
+}
+
+.vv-logo {
+    font-family: 'Oleo Script Swash Caps', cursive;
+    color: whitesmoke;
+    font-size: 4.0rem;
+    font-weight: 700;
+}
+
+.green-vert {
+    font-family: 'Oleo Script Swash Caps', cursive;
+    color: #c7f9cc;
+    font-size: 4.0rem;
+    font-weight: 700;
+}
+
+.nav-text {
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.navbar-toggler {
+    color: whitesmoke !important;
+}
+
+/* Home page */
+
+.bg-photo {
+    background-image: url('https://res.cloudinary.com/mt226/image/upload/v1659624957/jtjl3aynyzh6deheh6no.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 75vh;
+}
+
+.home-overlay {
+    background-color: rgba(34, 87, 122, 0.7);
+    padding: 20px;
+    max-width: 750px;
 }
