@@ -20,10 +20,10 @@
                                 <img class="card-img-top" src=" {{ route.featured_image.url }}">
                                 {% endif %}
                                 <div class="image-flash">
-                                    <p class="route">Route: {{ route.route_name }}</p>
-                                    <p class="description">{{ route.description }}</p>
-                                    <p class="">Duration (days): {{ route.duration }}</p>
-                                    <p class="">Distance (nautical miles): {{ route.distance }}</p>
+                                    <p class="route card-p">Route: {{ route.route_name }}</p>
+                                    <p class="card-p">{{ route.description }}</p>
+                                    <p class="card-p">Duration (days): {{ route.duration }}</p>
+                                    <p class="card-p">Distance (nautical miles): {{ route.distance }}</p>
                                     <a href="{% url 'route-trips' route.id %}" class="btn btn-primary">View trips</a>
                                 </div>
                             </div>

@@ -76,3 +76,34 @@ body {
     padding: 20px;
     max-width: 750px;
 }
+
+/* Card text */
+
+.card-p {
+    color: #22577a;
+}
+
+/* Buttons */
+
+.btn-dark {
+    background-color: whitesmoke !important;
+    color: #22577a;
+    border-color: #22577a !important;
+}
+
+.btn-dark:hover {
+    background-color: #c7f9cc !important;
+    color: #22577a;
+    border-color: #22577a !important;
+}
+
+.btn-primary {
+    background-color: #22577a !important;
+    border-color: #22577a !important;
+}
+
+.btn-primary:hover {
+    background-color: #c7f9cc !important;
+    color: #22577a;
+    border-color: #22577a !important;
+}
