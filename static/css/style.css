@@ -13,6 +13,7 @@ body {
     border: 0;
     letter-spacing: 4px;
     opacity: 0.9;
+    z-index: 1000;
 }
 
 .fixed-top {
@@ -77,10 +78,16 @@ body {
     max-width: 750px;
 }
 
-/* Card text */
+/* Cards */
 
-.card-p {
-    color: #22577a;
+.card-body {
+    color: #22577a !important;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 30vh;
+    object-fit: cover;
 }
 
 /* Buttons */

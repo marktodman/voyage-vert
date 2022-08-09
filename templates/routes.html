@@ -9,22 +9,24 @@
         <div class="col-12 mt-3">
             <div class="row">
                 {% for route in route_list %}
-                <div class="col-md-4">
-                    <div class="card mb-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card mb-4 d-flex">
                         <div class="card-body">
                             <div class="image-container">
                                 {% if "placeholder" in route.featured_image.url %}
                                 <img class="card-img-top"
-                                    src="https://res.cloudinary.com/mt226/image/upload/v1659624957/jtjl3aynyzh6deheh6no.jpg">
+                                    src="https://res.cloudinary.com/mt226/image/upload/v1659624957/jtjl3aynyzh6deheh6no.jpg"
+                                    alt="sailing image">
                                 {% else %}
-                                <img class="card-img-top" src=" {{ route.featured_image.url }}">
+                                <img class="card-img-top" src=" {{ route.featured_image.url }}" alt="destination image">
                                 {% endif %}
-                                <div class="image-flash">
-                                    <p class="route card-p">Route: {{ route.route_name }}</p>
-                                    <p class="card-p">{{ route.description }}</p>
-                                    <p class="card-p">Duration (days): {{ route.duration }}</p>
-                                    <p class="card-p">Distance (nautical miles): {{ route.distance }}</p>
-                                    <a href="{% url 'route-trips' route.id %}" class="btn btn-primary">View trips</a>
+                                <div class="card-body">
+                                    <h5 class="card-title">Route: {{ route.route_name }}</h5>
+                                    <p>{{ route.description }}</p>
+                                    <p>Duration (days): {{ route.duration }}</p>
+                                    <p>Distance (nautical miles): {{ route.distance }}</p>
+                                        <div class="d-grid col-6 mx-auto"><a href="{% url 'route-trips' route.id %}"
+                                                class="btn btn-primary">View trips</a></div>
                                 </div>
                             </div>
                         </div>
