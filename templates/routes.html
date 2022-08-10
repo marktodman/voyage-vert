@@ -1,38 +1,38 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<div class="container-fluid">
-    <div class="row">
-
+<!-- Page header -->
+<div class="container">
+    <div class="row pt-3">
+        <div class="col align-self-start">
+            <div class="mb-3">
+                <h3>All available routes:</h3>
+            </div>
+        </div>
         <!-- Route Cards-->
         <div class="col-12 mt-3">
             <div class="row">
                 {% for route in route_list %}
-                <div class="col-md-6 col-lg-4">
-                    <div class="card mb-4 d-flex">
-                        <div class="card-body">
-                            <div class="image-container">
-                                {% if "placeholder" in route.featured_image.url %}
-                                <img class="card-img-top"
-                                    src="https://res.cloudinary.com/mt226/image/upload/v1659624957/jtjl3aynyzh6deheh6no.jpg"
-                                    alt="sailing image">
-                                {% else %}
-                                <img class="card-img-top" src=" {{ route.featured_image.url }}" alt="destination image">
-                                {% endif %}
-                                <div class="card-body">
-                                    <h5 class="card-title">Route: {{ route.route_name }}</h5>
-                                    <p>{{ route.description }}</p>
-                                    <p>Duration (days): {{ route.duration }}</p>
-                                    <p>Distance (nautical miles): {{ route.distance }}</p>
-                                        <div class="d-grid col-6 mx-auto"><a href="{% url 'route-trips' route.id %}"
-                                                class="btn btn-primary">View trips</a></div>
-                                </div>
-                            </div>
+                <div class="col-md-6 col-lg-4 mb-3 d-flex align-items-stretch">
+                    <div class="card">
+                        {% if "placeholder" in route.featured_image.url %}
+                        <img class="card-img-top"
+                            src="https://res.cloudinary.com/mt226/image/upload/v1659624957/jtjl3aynyzh6deheh6no.jpg"
+                            alt="sailing image">
+                        {% else %}
+                        <img class="card-img-top" src=" {{ route.featured_image.url }}" alt="destination image">
+                        {% endif %}
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title text-uppercase text-center">{{ route.route_name }}</h5>
+                            <p>{{ route.description }}</p>
+                            <p>Duration (days): {{ route.duration }}</p>
+                            <p>Distance (nautical miles): {{ route.distance }}</p>
+                            <a href="{% url 'route-trips' route.id %}"
+                                class="btn btn-primary mt-auto align-self-center">View trips</a>
                         </div>
                     </div>
                 </div>
-                {% if forloop.counter|divisibleby:4 %}
+                {% if forloop.counter|divisibleby:3 %}
             </div>
             <div class="row">
                 {% endif %}
@@ -48,7 +48,6 @@
             {% endif %}
             {% if page_obj.has_next %}
             <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-
             {% endif %}
         </ul>
     </nav>
