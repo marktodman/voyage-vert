@@ -57,7 +57,7 @@
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarScrollingDropdown">
                             {% for route in routes %}
                             <li><a class="dropdown-item"
-                                    href="{% url 'route-trips' route.id %}">{{ route.route_name }}</a></li>
+                                    href="{% url 'trips' route.id %}">{{ route.route_name }}</a></li>
                             {% endfor %}
                         </ul>
             </div>
@@ -84,9 +84,9 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer mt-auto py-3 dark-bg fixed-bottom">
-        <p class="m-0 text-center text-black">&copy; Mark Todman <span id="copyright"></span></p>
-        <p class="m-0 text-center text-black">Follow us: <i class="fab fa-facebook-square ms-3"></i>
+    <footer class="footer mt-5 pt-3 pb-1">
+        <p class="m-0 text-center">&copy; Mark Todman <span id="copyright"></span></p>
+        <p class="m-0 text-center">Follow us: <i class="fab fa-facebook-square ms-3"></i>
             <i class="fab fa-twitter-square ms-3"></i>
             <i class="fab fa-instagram-square ms-3"></i>
             <i class="fab fa-youtube-square ms-3"></i></p>

@@ -29,4 +29,4 @@ class RouteTrips(View):
             "route_image": route_image,
             }
 
-        return render(request, 'route_trips.html', context=context)
+        return render(request, 'trips.html', context=context)
