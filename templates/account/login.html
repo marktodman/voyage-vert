@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+<div class="p-5 text-center bg-image bg-photo d-flex justify-content-center align-items-center">
+  <div class="mask home-overlay">
+      <div class="d-flex justify-content-center align-items-center">
+          <div class="text-white">
+              <h1 class="mb-3 text-uppercase">Sign in to join the global transport revolution</h1>
+              <p>{% blocktrans %}If you have not created an account yet, then please
+                <a href="{{ signup_url }}" class="account-link">sign up</a> first.{% endblocktrans %}</p>
+                <form class="login" method="POST" action="{% url 'account_login' %}">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  {% if redirect_field_value %}
+                  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                  {% endif %}
+                  <button class="btn btn-dark" type="submit">{% trans "Sign In" %}</button>
+                </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -78,7 +78,7 @@ body {
     max-width: 800px;
 }
 
-/* Cards */
+/* Route & Trip Cards */
 
 .card-body {
     color: #22577a !important;
@@ -88,6 +88,18 @@ body {
     width: 100%;
     height: 30vh;
     object-fit: cover;
+}
+
+/* Account cards */
+
+.account-link {
+    color: #c7f9cc;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.account-link:hover {
+    color: #80ED99;
 }
 
 /* Buttons */
