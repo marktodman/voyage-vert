@@ -14,7 +14,7 @@ class RouteList(ListView):
     paginate_by = 4
 
 
-class RouteTrips(View):
+class Trips(View):
 
     def get(self, request, route_id, *args, **kwargs):
         queryset = Route.objects.filter(status=1)
