@@ -1,7 +1,15 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, TemplateView, View
 from .models import Route, Trip
+from .forms import RouteForm
 
+
+def add_route(request):
+        form = RouteForm
+        context = {
+            'form': form
+        }
+        return render(request, 'add_route.html', context=context)
 
 class HomePage(TemplateView):
     template_name = 'index.html'
@@ -30,3 +38,10 @@ class Trips(View):
             }
 
         return render(request, 'trips.html', context=context)
+
+
+# class RouteForm(View):
+
+#     def get(self, request, *args, **kwargs):
+
+
