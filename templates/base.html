@@ -61,7 +61,7 @@
                             </li>
                             {% endfor %}
                         </ul>
-                        {% if user.is_authenticated %}
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                     </li>
@@ -69,9 +69,24 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
                     </li>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarScrollingDropdown">
+                        <li><a class="dropdown-item" href="#">Manage site</a>
+                        </li>
+                    </ul>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'account_login' %}">Login</a>
                     </li>
+                    {% endif %}
+                    {% if user.is_superuser %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="{% url 'routes' %}" id="navbarScrollingDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Manage Site
+                        </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarScrollingDropdown">
+                        <li><a class="dropdown-item" href="#">Test</a>
+                        </li>
+                    </ul>
                     {% endif %}
                 </ul>
             </div>
