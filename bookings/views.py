@@ -2,14 +2,28 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, TemplateView, View
 from .models import Route, Trip
 from .forms import RouteForm
+from django.http import HttpResponseRedirect
 
 
 def add_route(request):
+    submitted = False
+
+    if request.method == "POST":
+        form = RouteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('add_route?submitted=True')
+    else:
         form = RouteForm
-        context = {
-            'form': form
+        if 'submitted' in request.GET:
+            submitted = True
+
+    context = {
+        'form': form,
+        'submitted': submitted
         }
-        return render(request, 'add_route.html', context=context)
+
+    return render(request, 'add_route.html', context=context)
 
 class HomePage(TemplateView):
     template_name = 'index.html'
