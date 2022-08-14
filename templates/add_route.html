@@ -3,6 +3,8 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+
+{% if user.is_superuser %}
 <div class="d-flex justify-content-center align-items-center">
     <div class="text-white">
         <h1 class="mb-3">Add a Route to the Database</h1>
@@ -14,6 +16,27 @@
 
             <button class="btn btn-dark mb-2 mt-3" type="submit">Add Route</button>
         </form>
+{% elif user.is_authenticated %}
+<div class="d-flex justify-content-center align-items-center">
+    <div class="text-white text-center">
+        <h1 class="mb-3">You must be a site admin to access this page</h1>
+        <br>
+        <h2>Please logout and login with a superuser account</h2>
+        <a class="btn btn-dark btn-lg m-2" href="{% url 'account_logout' %}" role="button">Logout</a>
+        <br>
+        <h2>Alternatively, return to the home page</h2>
+        <a class="btn btn-dark btn-lg m-2" href="{% url 'home' %}" role="button">Back to Home</a>
+{% else %}
+<div class="d-flex justify-content-center align-items-center">
+    <div class="text-white text-center">
+        <h1 class="mb-3">You must be a site admin to access this page</h1>
+        <br>
+        <h2>Please login with a superuser account</h2>
+        <a class="btn btn-dark btn-lg m-2" href="{% url 'account_login' %}" role="button">Login</a>
+        <br>
+        <h2>Alternatively, return to the home page</h2>
+        <a class="btn btn-dark btn-lg m-2" href="{% url 'home' %}" role="button">Back to Home</a>
+{% endif %}
     </div>
 </div>
 
