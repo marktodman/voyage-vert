@@ -1,29 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, TemplateView, View
 from .models import Route, Trip
-from .forms import RouteForm
+from .forms import RouteForm, TripForm
 from django.http import HttpResponseRedirect
 
-
-def add_route(request):
-    submitted = False
-
-    if request.method == "POST":
-        form = RouteForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('add_route?submitted=True')
-    else:
-        form = RouteForm
-        if 'submitted' in request.GET:
-            submitted = True
-
-    context = {
-        'form': form,
-        'submitted': submitted
-        }
-
-    return render(request, 'add_route.html', context=context)
 
 class HomePage(TemplateView):
     template_name = 'index.html'
@@ -54,8 +34,43 @@ class Trips(View):
         return render(request, 'trips.html', context=context)
 
 
-# class RouteForm(View):
+def add_route(request):
+    submitted = False
 
-#     def get(self, request, *args, **kwargs):
+    if request.method == "POST":
+        form = RouteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('add_route?submitted=True')
+    else:
+        form = RouteForm
+        if 'submitted' in request.GET:
+            submitted = True
+
+    context = {
+        'form': form,
+        'submitted': submitted
+        }
+
+    return render(request, 'add_route.html', context=context)
 
 
+def add_trip(request):
+    submitted = False
+
+    if request.method == "POST":
+        form = TripForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('add_trip?submitted=True')
+    else:
+        form = TripForm
+        if 'submitted' in request.GET:
+            submitted = True
+
+    context = {
+        'form': form,
+        'submitted': submitted
+        }
+
+    return render(request, 'add_trip.html', context=context)

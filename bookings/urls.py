@@ -7,5 +7,5 @@ urlpatterns = [
     path('routes', views.RouteList.as_view(), name='routes'),
     path('trips/<route_id>', views.Trips.as_view(), name='trips'),
     path('add_route', views.add_route, name='add-route'),
-    # path('booking/<trip.id>'), views.Booking.as_view(), name='booking'),
+    path('add_trip', views.add_trip, name='add-trip'),
 ]

@@ -126,3 +126,9 @@ body {
     color: #22577a;
     border-color: #22577a !important;
 }
+
+/* Crispy Forms */
+
+.asteriskField {
+    display: none;
+}
