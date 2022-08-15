@@ -11,4 +11,5 @@ urlpatterns = [
     path('admin_panel', views.admin_panel, name='admin-panel'),
     path('edit_route/<route_id>', views.edit_route, name='edit-route'),
     path('edit_trip/<trip_id>', views.edit_trip, name='edit-trip'),
+    path('delete_route/<route_id>', views.delete_route, name='delete-route'),
 ]

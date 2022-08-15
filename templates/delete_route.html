@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center">
+    <div class="text-white text-center mt-4">
+        <h3 class="mb-3">Are you sure you want to delete {{ route.route_name }} from the database?</h3>
+        <h4>All trips associated with this route will also be deleted.</h4>
+        <h5>This cannot be undone!</h5>
+        <form action="" method="POST" class="form-link">
+            {% csrf_token %}
+            <input class="btn btn-danger mb-2 mt-3" type="submit" value="Delete">
+        </form>
+        <a class="btn btn-dark mb-2 mt-3" href="{% url 'admin-panel' %}" role="button">Return to Admin Panel without Deleting</a>
+    </div>
+</div>
+{% endblock %}
