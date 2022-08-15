@@ -5,10 +5,12 @@ from .forms import RouteForm, TripForm
 from django.http import HttpResponseRedirect
 
 
+# Render Home Page
 class HomePage(TemplateView):
     template_name = 'index.html'
 
 
+# Create Route Views 
 class RouteList(ListView): 
     model = Route
     queryset = Route.objects.filter(status=1).order_by('route_name')
@@ -16,6 +18,7 @@ class RouteList(ListView):
     paginate_by = 4
 
 
+# Create Trips Views
 class Trips(View):
 
     def get(self, request, route_id, *args, **kwargs):
@@ -34,6 +37,18 @@ class Trips(View):
         return render(request, 'trips.html', context=context)
 
 
+# Superuser can view all routes on the database from the frontend
+def admin_panel(request):
+    routes = Route.objects.all()
+
+    context = {
+            "routes": routes,
+            }
+
+    return render(request, 'admin_panel.html', context=context)
+
+
+# Superuser can add a route to the database from the frontend
 def add_route(request):
     submitted = False
 
@@ -55,6 +70,7 @@ def add_route(request):
     return render(request, 'add_route.html', context=context)
 
 
+# Superuser can add a trip to the database from the frontend
 def add_trip(request):
     submitted = False
 
@@ -74,3 +90,15 @@ def add_trip(request):
         }
 
     return render(request, 'add_trip.html', context=context)
+
+
+# Superuser can edit routes on the database from the frontend
+def edit_route(request, route_id):
+    route = Route.objects.get(pk=route_id)
+
+    context = {
+            "route": route,
+            }
+
+    return render(request, 'edit_route.html', context=context)
+    

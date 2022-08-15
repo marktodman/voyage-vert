@@ -8,4 +8,6 @@ urlpatterns = [
     path('trips/<route_id>', views.Trips.as_view(), name='trips'),
     path('add_route', views.add_route, name='add-route'),
     path('add_trip', views.add_trip, name='add-trip'),
+    path('admin_panel', views.admin_panel, name='admin-panel'),
+    path('edit_route/<route_id>', views.edit_route, name='edit-route'),
 ]

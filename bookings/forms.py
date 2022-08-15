@@ -16,5 +16,6 @@ class TripForm(ModelForm):
         model = Trip
         fields = ('trip_date', 'route_name', 'description', 'status')
         widgets = {
-			'trip_date': forms.TextInput(attrs={'class':'form-control', 'placeholder':'YYYY/MM/DD'}),
+			'trip_date': forms.TextInput(attrs=
+            {'class': 'form-control', 'placeholder': 'YYYY/MM/DD'}),
 		}

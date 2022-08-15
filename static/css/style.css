@@ -132,3 +132,10 @@ body {
 .asteriskField {
     display: none;
 }
+
+
+/* Admin tables */
+
+.table tr:hover {
+    color: #c7f9cc !important;
+}
