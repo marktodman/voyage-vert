@@ -1,8 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, TemplateView, View
 from .models import Route, Trip
 from .forms import RouteForm, TripForm
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 
 
 # Render Home Page
@@ -40,9 +41,11 @@ class Trips(View):
 # Superuser can view all routes on the database from the frontend
 def admin_panel(request):
     routes = Route.objects.all()
+    trips = Trip.objects.all()
 
     context = {
-            "routes": routes,
+            'routes': routes,
+            'trips' : trips,
             }
 
     return render(request, 'admin_panel.html', context=context)
@@ -94,10 +97,17 @@ def add_trip(request):
 
 # Superuser can edit routes on the database from the frontend
 def edit_route(request, route_id):
-    route = Route.objects.get(pk=route_id)
+    route = Route.objects.get(id=route_id)
+    form = RouteForm(request.POST or None, instance=route)
+    if form.is_valid():
+        form.save()
+        messages.success(request, (
+            'Success! Your changes have been saved to the database'))
+        return redirect('admin-panel')
 
     context = {
-            "route": route,
+            'route': route,
+            'form': form,
             }
 
     return render(request, 'edit_route.html', context=context)

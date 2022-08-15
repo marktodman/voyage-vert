@@ -3,49 +3,24 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-
-{{ route.route_name }}
-
-<!-- {% if user.is_superuser %}
 <div class="d-flex justify-content-center align-items-center">
     <div class="text-white text-center">
-        <h1 class="mb-3">All Routes</h1>
+        <h1 class="mb-3">Edit the {{ route.route_name }} route</h1>
         {% if submitted %}
-        <h2>Your new route was added to the database</h2>
-        <a class="btn btn-dark btn-lg m-2" href="{% url 'add-route' %}" role="button">Add another route</a>
+        <h2>Your edits route were added to the database</h2>
+        <a class="btn btn-dark btn-lg m-2" href="{% url 'admin-panel' %}" role="button">Admin Panel</a>
         <a class="btn btn-dark btn-lg m-2" href="{% url 'routes' %}" role="button">View Routes</a>
         <a class="btn btn-dark btn-lg m-2" href="{% url 'home' %}" role="button">Home</a>
         {% else %}
-        <form action="" method="POST">
+        <form action="" method="POST" class="form-link">
             {% csrf_token %}
 
             {{ form | crispy }}
 
-            <button class="btn btn-dark mb-2 mt-3" type="submit">Add Route</button>
+            <button class="btn btn-dark mb-2 mt-3" type="submit">Save Changes</button>
         </form>
         {% endif %}
-
-        {% elif user.is_authenticated %}
-        <div class="d-flex justify-content-center align-items-center">
-            <div class="text-white text-center">
-                <h1 class="mb-3">You must be a site administrator to access this page</h1>
-                <br>
-                <h2>Please logout and login with a superuser account</h2>
-                <a class="btn btn-dark btn-lg m-2" href="{% url 'account_logout' %}" role="button">Logout</a>
-                <br>
-                <h2>Alternatively, return to the home page</h2>
-                <a class="btn btn-dark btn-lg m-2" href="{% url 'home' %}" role="button">Back to Home</a>
-                {% else %}
-                <div class="d-flex justify-content-center align-items-center">
-                    <div class="text-white text-center">
-                        <h1 class="mb-3">You must be a site administrator to access this page</h1>
-                        <br>
-                        <h2>Please login with a superuser account</h2>
-                        <a class="btn btn-dark btn-lg m-2" href="{% url 'account_login' %}" role="button">Login</a>
-                        <br>
-                        <h2>Alternatively, return to the home page</h2>
-                        <a class="btn btn-dark btn-lg m-2" href="{% url 'home' %}" role="button">Back to Home</a>
-                        {% endif %}
-                    </div>
-                </div> -->
+        <a class="btn btn-dark mb-2 mt-3" href="{% url 'admin-panel' %}" role="button">Return to Admin Panel without Saving</a>
+    </div>
+</div>
 {% endblock %}

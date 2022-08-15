@@ -133,6 +133,13 @@ body {
     display: none;
 }
 
+.form-link a {
+    color: #c7f9cc;
+}
+
+.form-link a:hover {
+    color: #80ED99;
+}
 
 /* Admin tables */
 

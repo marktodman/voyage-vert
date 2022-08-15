@@ -7,6 +7,7 @@
 <div class="container">
     <div class="row justify-content-md-center">
         <div class="col-md-auto">
+            <h2>Routes</h2>
             <div class="table-responsive">
                 <table class="table table-sm table-hover table-bordered text-white mt-3 mb-3 admin-table">
                     <thead>
@@ -25,7 +26,7 @@
                             <td>{{ route.duration}}</td>
                             <td>{{ route.distance}}</td>
                             <td>{{ route.get_status_display }}</td>
-                            <td><a class="btn btn-dark btn-sm m-2" href="{% url 'edit-route' route.id %}" role="button">Update</a></td>
+                            <td><a class="btn btn-dark btn-sm m-2" href="{% url 'edit-route' route.id %}" role="button">Edit</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -34,5 +35,35 @@
         </div>
     </div>
 </div>
-
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+            <h2>Trips</h2>
+            <div class="table-responsive">
+                <table class="table table-sm table-hover table-bordered text-white mt-3 mb-3 admin-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Trip Name</th>
+                            <th scope="col">Duration (days)</th>
+                            <th scope="col">Distance (nautical miles)</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for route in routes %}
+                        <tr>
+                            <td>{{ route.route_name}}</td>
+                            <td>{{ route.duration}}</td>
+                            <td>{{ route.distance}}</td>
+                            <td>{{ route.get_status_display }}</td>
+                            <td><a class="btn btn-dark btn-sm m-2" href="{% url 'edit-route' route.id %}" role="button">Edit</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
