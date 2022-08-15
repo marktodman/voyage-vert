@@ -45,7 +45,7 @@ def admin_panel(request):
 
     context = {
             'routes': routes,
-            'trips' : trips,
+            'trips': trips,
             }
 
     return render(request, 'admin_panel.html', context=context)
@@ -111,4 +111,21 @@ def edit_route(request, route_id):
             }
 
     return render(request, 'edit_route.html', context=context)
-    
+
+
+# Superuser can edit trips on the database from the frontend
+def edit_trip(request, trip_id):
+    trip = Trip.objects.get(id=trip_id)
+    form = TripForm(request.POST or None, instance=trip)
+    if form.is_valid():
+        form.save()
+        messages.success(request, (
+            'Success! Your changes have been saved to the database'))
+        return redirect('admin-panel')
+
+    context = {
+            'trip': trip,
+            'form': form,
+            }
+
+    return render(request, 'edit_trip.html', context=context)
