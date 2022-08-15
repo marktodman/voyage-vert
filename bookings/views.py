@@ -135,7 +135,7 @@ def edit_trip(request, trip_id):
 def delete_route(request, route_id):
     route = Route.objects.get(id=route_id)
 
-    # Check that admin user really wants to delete this route
+    # Check that user really wants to delete this route!
     if request.method == 'POST':
         route.delete()
         messages.success(request, (
@@ -147,3 +147,21 @@ def delete_route(request, route_id):
             }
 
     return render(request, 'delete_route.html', context=context)
+
+
+# Superuser can delete a Trip
+def delete_trip(request, trip_id):
+    trip = Trip.objects.get(id=trip_id)
+
+    # Check that user really wants to delete this trip!
+    if request.method == 'POST':
+        trip.delete()
+        messages.success(request, (
+            'Success! The trip has been deleted from the database'))
+        return redirect('admin-panel')
+
+    context = {
+            'trip': trip
+            }
+
+    return render(request, 'delete_trip.html', context=context)

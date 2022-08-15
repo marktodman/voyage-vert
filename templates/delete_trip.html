@@ -2,15 +2,16 @@
 
 
 {% block content %}
+
 <div class="col-12 mt-3">
     <div class="row">
         <div class="col-md-6 col-lg-4 mx-auto">
             <div class="card text-center">
                 <div class="card-body d-flex flex-column">
-                    <h5 class="card-title text-center">Are you sure you want to delete
-                        <strong>{{ route.route_name }}</strong> from the database?
+                    <h5 class="card-title text-center">Are you sure you want to delete the trip from
+                        <strong>{{ trip.route_name }}</strong> on <strong>{{ trip.trip_date }}</strong> from the
+                        database?
                     </h5>
-                    <p class="card-text">All trips associated with this route will also be deleted.</p>
                     <p class="card-text">This cannot be undone!</p>
                     <a class="btn btn-primary mb-2 mt-3" href="{% url 'admin-panel' %}" role="button">Return to Admin
                         Panel
