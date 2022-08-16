@@ -36,7 +36,7 @@ class Trips(View):
             "route_image": route_image,
             }
 
-        return render(request, 'trips.html', context=context)
+        return render(request, 'trips.html', context)
 
 
 # Superuser can view all routes on the database from the frontend
@@ -50,7 +50,7 @@ def admin_panel(request):
                 'trips': trips,
                 }
 
-        return render(request, 'admin_panel.html', context=context)
+        return render(request, 'admin_panel.html', context)
 
     else:
         messages.success(request, (
@@ -78,7 +78,7 @@ def add_route(request):
             'submitted': submitted
             }
 
-        return render(request, 'add_route.html', context=context)
+        return render(request, 'add_route.html', context)
 
     else:
         messages.success(request, (
@@ -105,7 +105,7 @@ def add_trip(request):
         'submitted': submitted
         }
 
-    return render(request, 'add_trip.html', context=context)
+    return render(request, 'add_trip.html', context)
 
 
 # Superuser can edit routes on the database from the frontend
@@ -123,7 +123,7 @@ def edit_route(request, route_id):
             'form': form,
             }
 
-    return render(request, 'edit_route.html', context=context)
+    return render(request, 'edit_route.html', context)
 
 
 # Superuser can edit trips on the database from the frontend
@@ -141,7 +141,7 @@ def edit_trip(request, trip_id):
             'form': form,
             }
 
-    return render(request, 'edit_trip.html', context=context)
+    return render(request, 'edit_trip.html', context)
 
 
 # Superuser can delete a Route
@@ -159,7 +159,7 @@ def delete_route(request, route_id):
             'route': route
             }
 
-    return render(request, 'delete_route.html', context=context)
+    return render(request, 'delete_route.html', context)
 
 
 # Superuser can delete a Trip
@@ -178,7 +178,7 @@ def delete_trip(request, trip_id):
                 'trip': trip
                 }
 
-        return render(request, 'delete_trip.html', context=context)
+        return render(request, 'delete_trip.html', context)
     
     else:
         messages.success(request, (
