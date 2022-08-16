@@ -7,7 +7,7 @@ from .models import Route, Trip
 class RouteForm(ModelForm):
     class Meta:
         model = Route
-        fields = "__all__"
+        fields = '__all__'
 
 
 # Create a new Trip

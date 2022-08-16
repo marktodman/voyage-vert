@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load cloudinary %}
+
 {% load crispy_forms_tags %}
 
 {% block content %}
@@ -12,9 +14,9 @@
         <h2>Your new route was added to the database</h2>
         <a class="btn btn-dark btn-lg m-2" href="{% url 'add-route' %}" role="button">Add another route</a>
         <a class="btn btn-dark btn-lg m-2" href="{% url 'routes' %}" role="button">View Routes</a>
-        <a class="btn btn-dark btn-lg m-2" href="{% url 'home' %}" role="button">Home</a>
+        <a class="btn btn-dark btn-lg m-2" href="{% url 'admin-panel' %}" role="button">Admin Panel</a>
         {% else %}
-        <form action="" method="POST">
+        <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
 
             {{ form | crispy }}
@@ -22,32 +24,7 @@
             <button class="btn btn-dark mb-2 mt-3" type="submit">Add Route</button>
         </form>
         {% endif %}
-
-        {% elif user.is_authenticated %}
-        <div class="d-flex justify-content-center align-items-center">
-            <div class="text-white text-center">
-                <h1 class="mb-3">You must be a site administrator to access this page</h1>
-                <br>
-                <h2>Please logout and login with a superuser account</h2>
-                <a class="btn btn-dark btn-lg m-2" href="{% url 'account_logout' %}" role="button">Logout</a>
-                <br>
-                <h2>Alternatively, return to the home page</h2>
-                <a class="btn btn-dark btn-lg m-2" href="{% url 'home' %}" role="button">Back to Home</a>
-                {% else %}
-                <div class="d-flex justify-content-center align-items-center">
-                    <div class="text-white text-center">
-                        <h1 class="mb-3">You must be a site administrator to access this page</h1>
-                        <br>
-                        <h2>Please login with a superuser account</h2>
-                        <a class="btn btn-dark btn-lg m-2" href="{% url 'account_login' %}" role="button">Login</a>
-                        <br>
-                        <h2>Alternatively, return to the home page</h2>
-                        <a class="btn btn-dark btn-lg m-2" href="{% url 'home' %}" role="button">Back to Home</a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
+{% endif %}
 {% endblock %}

@@ -127,6 +127,17 @@ body {
     border-color: #22577a !important;
 }
 
+.btn-secondary {
+    background-color: #22577a !important;
+    border-color: #22577a !important;
+}
+
+.btn-secondary:hover {
+    background-color: #38A3A5 !important;
+    color: white;
+    border-color: #22577a !important;
+}
+
 /* Crispy Forms */
 
 .asteriskField {
@@ -143,6 +154,11 @@ body {
 
 /* Admin tables */
 
-.table tr:hover {
-    color: #c7f9cc !important;
+.table {
+    color: #22577a !important;
+}
+
+.table-hover tbody tr:hover {
+    --bs-table-accent-bg: #C7F9CC;
+    color: #22577a !important;
 }

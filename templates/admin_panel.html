@@ -9,7 +9,7 @@
         <div class="col-md-auto">
             <h2 class="text-center">Routes</h2>
             <div class="table-responsive">
-                <table class="table table-sm table-hover table-bordered text-white mt-3 mb-3 admin-table">
+                <table class="table table-sm table-hover table-bordered table-light mt-3 mb-3">
                     <thead>
                         <tr>
                             <th scope="col">Route Name</th>
@@ -28,7 +28,7 @@
                             <td>{{ route.duration }}</td>
                             <td>{{ route.distance }}</td>
                             <td>{{ route.get_status_display }}</td>
-                            <td><a class="btn btn-dark btn-sm m-2" href="{% url 'edit-route' route.id %}" role="button">Edit</a><a class="btn btn-danger btn-sm m-2" href="{% url 'delete-route' route.id %}" role="button">Delete</a></td>
+                            <td><a class="btn btn-secondary btn-sm m-2" href="{% url 'edit-route' route.id %}" role="button">Edit</a><a class="btn btn-danger btn-sm m-2" href="{% url 'delete-route' route.id %}" role="button">Delete</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -42,7 +42,7 @@
         <div class="col-md-auto">
             <h2 class="text-center">Trips</h2>
             <div class="table-responsive">
-                <table class="table table-sm table-hover table-bordered text-white mt-3 mb-3 admin-table">
+                <table class="table table-sm table-hover table-bordered table-light mt-3 mb-3">
                     <thead>
                         <tr>
                             <th scope="col">Trip Date</th>
@@ -59,7 +59,7 @@
                             <td>{{ trip.route_name }}</td>
                             <td>{{ trip.description }}</td>
                             <td>{{ trip.get_status_display }}</td>
-                            <td><a class="btn btn-dark btn-sm m-2" href="{% url 'edit-trip' trip.id %}" role="button">Edit</a><a class="btn btn-danger btn-sm m-2" href="{% url 'delete-trip' trip.id %}" role="button">Delete</a></td>
+                            <td><a class="btn btn-primary btn-sm m-2" href="{% url 'edit-trip' trip.id %}" role="button">Edit</a><a class="btn btn-danger btn-sm m-2" href="{% url 'delete-trip' trip.id %}" role="button">Delete</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
