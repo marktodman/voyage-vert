@@ -125,20 +125,26 @@ def add_trip(request):
 
 # Superuser can edit routes on the database from the frontend
 def edit_route(request, route_id):
-    route = Route.objects.get(id=route_id)
-    form = RouteForm(request.POST or None, instance=route)
-    if form.is_valid():
-        form.save()
-        messages.success(request, (
-            'Success! Your changes have been saved to the database'))
-        return redirect('admin-panel')
 
-    context = {
+    # This page can only be accessed by a superuser
+    if request.user.is_superuser:
+        route = Route.objects.get(id=route_id)
+        if request.method == "POST":
+            form = RouteForm(request.POST, request.FILES, instance=route)
+
+            if form.is_valid():
+                form.save()
+                messages.success(request, (
+                    'Success! Your changes have been saved to the database'))
+                return redirect('admin-panel')
+
+        form = RouteForm(instance=route)
+        context = {
             'route': route,
             'form': form,
             }
 
-    return render(request, 'edit_route.html', context)
+        return render(request, 'edit_route.html', context)
 
 
 # Superuser can edit trips on the database from the frontend
