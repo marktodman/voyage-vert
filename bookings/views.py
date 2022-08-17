@@ -41,6 +41,8 @@ class Trips(View):
 
 # Superuser can view all routes on the database from the frontend
 def admin_panel(request):
+
+    # This page can only be accessed by a superuser
     if request.user.is_superuser:
         routes = Route.objects.all()
         trips = Trip.objects.all()
@@ -52,14 +54,17 @@ def admin_panel(request):
 
         return render(request, 'admin_panel.html', context)
 
+    # For non-superusers trying to access the page
     else:
         messages.success(request, (
             'Access denied. Please sign in as an admin.'))
-        return redirect('account_login')
+        return redirect('home')
 
 
 # Superuser can add a route to the database from the frontend
 def add_route(request):
+
+    # This page can only be accessed by a superuser
     if request.user.is_superuser:
         submitted = False
 
@@ -80,32 +85,42 @@ def add_route(request):
 
         return render(request, 'add_route.html', context)
 
+    # For non-superusers trying to access the page
     else:
         messages.success(request, (
             'Access denied. Please sign in as an admin.'))
-        return redirect('account_login')
+        return redirect('home')
 
 
 # Superuser can add a trip to the database from the frontend
 def add_trip(request):
-    submitted = False
 
-    if request.method == "POST":
-        form = TripForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('add_trip?submitted=True')
+    # This page can only be accessed by a superuser
+    if request.user.is_superuser:
+        submitted = False
+
+        if request.method == "POST":
+            form = TripForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect('add_trip?submitted=True')
+        else:
+            form = TripForm
+            if 'submitted' in request.GET:
+                submitted = True
+
+        context = {
+            'form': form,
+            'submitted': submitted
+            }
+
+        return render(request, 'add_trip.html', context)
+
+    # For non-superusers trying to access the page
     else:
-        form = TripForm
-        if 'submitted' in request.GET:
-            submitted = True
-
-    context = {
-        'form': form,
-        'submitted': submitted
-        }
-
-    return render(request, 'add_trip.html', context)
+        messages.success(request, (
+            'Access denied. Please sign in as an admin.'))
+        return redirect('home')
 
 
 # Superuser can edit routes on the database from the frontend
@@ -148,7 +163,7 @@ def edit_trip(request, trip_id):
 def delete_route(request, route_id):
     route = Route.objects.get(id=route_id)
 
-    # Check that user really wants to delete this route!
+    # Check that user really wants to delete this route
     if request.method == 'POST':
         route.delete()
         messages.success(request, (
@@ -164,10 +179,12 @@ def delete_route(request, route_id):
 
 # Superuser can delete a Trip
 def delete_trip(request, trip_id):
+
+    # This page can only be accessed by a superuser
     if request.user.is_superuser:
         trip = Trip.objects.get(id=trip_id)
 
-        # Check that user really wants to delete this trip!
+        # Check that user really wants to delete this trip
         if request.method == 'POST':
             trip.delete()
             messages.success(request, (
@@ -179,8 +196,9 @@ def delete_trip(request, trip_id):
                 }
 
         return render(request, 'delete_trip.html', context)
-    
+
+    # For non-superusers trying to access the page
     else:
         messages.success(request, (
-            'You do not have permission to access this page. Please sign in as an admin.'))
+            'Access denied. Please sign in as an admin.'))
         return redirect('home')
