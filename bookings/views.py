@@ -100,7 +100,7 @@ def add_trip(request):
         submitted = False
 
         if request.method == "POST":
-            form = TripForm(request.POST, request.FILES)
+            form = TripForm(request.POST)
             if form.is_valid():
                 form.save()
                 return HttpResponseRedirect('add_trip?submitted=True')
