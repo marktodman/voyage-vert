@@ -59,7 +59,7 @@
                             <td>{{ trip.route_name }}</td>
                             <td>{{ trip.description }}</td>
                             <td>{{ trip.get_status_display }}</td>
-                            <td><a class="btn btn-primary btn-sm m-2" href="{% url 'edit-trip' trip.id %}" role="button">Edit</a><a class="btn btn-danger btn-sm m-2" href="{% url 'delete-trip' trip.id %}" role="button">Delete</a></td>
+                            <td><a class="btn btn-secondary btn-sm m-2" href="{% url 'edit-trip' trip.id %}" role="button">Edit</a><a class="btn btn-danger btn-sm m-2" href="{% url 'delete-trip' trip.id %}" role="button">Delete</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>

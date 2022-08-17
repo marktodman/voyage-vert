@@ -26,7 +26,7 @@ class Trips(View):
     def get(self, request, route_id, *args, **kwargs):
         queryset = Route.objects.filter(status=1)
         route = get_object_or_404(queryset, id=route_id)
-        trips = route.trip_set.all()
+        trips = route.trip_set.all().filter(status=1)
         route_name = route.route_name
         route_image = route.featured_image
 
@@ -129,7 +129,7 @@ def edit_route(request, route_id):
     # This page can only be accessed by a superuser
     if request.user.is_superuser:
         route = Route.objects.get(id=route_id)
-        if request.method == "POST":
+        if request.method == 'POST':
             form = RouteForm(request.POST, request.FILES, instance=route)
 
             if form.is_valid():
@@ -146,23 +146,38 @@ def edit_route(request, route_id):
 
         return render(request, 'edit_route.html', context)
 
+    # For non-superusers trying to access the page
+    else:
+        messages.success(request, (
+            'Access denied. Please sign in as an admin.'))
+        return redirect('home')
+
 
 # Superuser can edit trips on the database from the frontend
 def edit_trip(request, trip_id):
-    trip = Trip.objects.get(id=trip_id)
-    form = TripForm(request.POST or None, instance=trip)
-    if form.is_valid():
-        form.save()
+
+    # This page can only be accessed by a superuser
+    if request.user.is_superuser:
+        trip = Trip.objects.get(id=trip_id)
+        form = TripForm(request.POST or None, instance=trip)
+        if form.is_valid():
+            form.save()
+            messages.success(request, (
+                'Success! Your changes have been saved to the database'))
+            return redirect('admin-panel')
+
+        context = {
+                'trip': trip,
+                'form': form,
+                }
+
+        return render(request, 'edit_trip.html', context=context)
+
+    # For non-superusers trying to access the page
+    else:
         messages.success(request, (
-            'Success! Your changes have been saved to the database'))
-        return redirect('admin-panel')
-
-    context = {
-            'trip': trip,
-            'form': form,
-            }
-
-    return render(request, 'edit_trip.html', context)
+            'Access denied. Please sign in as an admin.'))
+        return redirect('home')
 
 
 # Superuser can delete a Route
