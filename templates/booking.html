@@ -1,5 +1,37 @@
 {% extends "base.html" %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
+<h2 class="mb-3 text-center">Express your interest in the {{ trip.route_name }} trip on {{ trip.trip_date }}</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-lg-4 mx-auto">
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="text-white text-center">
+                    
+                    {% if submitted %}
+                    <h2>Your interest for the trip has been registered. We will be in touch with an update soon!</h2>
+                    <a class="btn btn-dark btn-lg m-2" href="{% url 'routes' %}" role="button">View Routes</a>
+                    <a class="btn btn-dark btn-lg m-2" href="#" role="button">Account</a>
+                    {% else %}
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        {{ form | crispy }}
+
+                        <button class="btn btn-dark mb-2 mt-3" type="submit">Express Interest</button>
+                    </form>
+                    <a class="btn btn-dark mb-2 mt-3" href="{% url 'routes' %}" role="button">Cancel and Return to
+                        Routes Summary</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 {% endblock %}

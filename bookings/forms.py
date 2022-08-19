@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Route, Trip
+from .models import Route, Trip, Booking
 
 
 # Create a new Route
@@ -19,3 +19,10 @@ class TripForm(ModelForm):
 			'trip_date': forms.TextInput(attrs=
             {'class': 'form-control', 'placeholder': 'YYYY-MM-DD'}),
 		}
+
+
+# Create a new Booking
+class BookingForm(ModelForm):
+    class Meta:
+        model = Booking
+        fields = '__all__'

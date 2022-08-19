@@ -1,10 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, TemplateView, View
 from .models import Route, Trip
-from .forms import RouteForm, TripForm
+from .forms import RouteForm, TripForm, BookingForm
 from django.http import HttpResponseRedirect
 from django.contrib import messages
-from cloudinary.forms import cl_init_js_callbacks 
+
 
 
 # Render Home Page
@@ -12,7 +12,7 @@ class HomePage(TemplateView):
     template_name = 'index.html'
 
 
-# Create Route Views 
+# Create Route View 
 class RouteList(ListView): 
     model = Route
     queryset = Route.objects.filter(status=1).order_by('route_name')
@@ -20,23 +20,56 @@ class RouteList(ListView):
     paginate_by = 6
 
 
-# Create Trips Views
+# Create Trips View
 class Trips(View):
 
     def get(self, request, route_id, *args, **kwargs):
         queryset = Route.objects.filter(status=1)
         route = get_object_or_404(queryset, id=route_id)
-        trips = route.trip_set.all().filter(status=1)
+        trips = route.trip_set.filter(status=1)
         route_name = route.route_name
         route_image = route.featured_image
 
         context = {
-            "trips": trips,
-            "route_name": route_name,
-            "route_image": route_image,
+            'trips': trips,
+            'route_name': route_name,
+            'route_image': route_image,
             }
 
         return render(request, 'trips.html', context)
+
+
+# An authenticated user can express an interest in a trip
+def booking(request, trip_id):
+    trip = Trip.objects.get(id=trip_id)
+    route_name = trip.route_name
+
+    submitted = False
+
+    if request.method == "POST":
+        form = BookingForm(request.POST, initial={
+            'trip_date': trip,
+            'route_name': route_name,
+        })
+            
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('booking?submitted=True')
+    else:
+        form = BookingForm(initial={
+            'trip_date': trip,
+            'route_name': route_name,
+        })
+        if 'submitted' in request.GET:
+            submitted = True
+
+    context = {
+        'trip': trip,
+        'route_name': route_name,
+        'form': form
+        }
+
+    return render(request, 'booking.html', context)
 
 
 # Superuser can view all routes on the database from the frontend
@@ -208,7 +241,7 @@ def delete_route(request, route_id):
 
 
 # Superuser can delete a Trip
-def delete_trip(request, trip_id):
+def delete_trip(request, booking_id):
 
     # This page can only be accessed by a superuser
     if request.user.is_superuser:
@@ -232,3 +265,5 @@ def delete_trip(request, trip_id):
         messages.success(request, (
             'Access denied. Please sign in as an admin.'))
         return redirect('home')
+
+
