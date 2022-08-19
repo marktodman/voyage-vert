@@ -43,25 +43,24 @@ class Trips(View):
 def booking(request, trip_id):
     trip = Trip.objects.get(id=trip_id)
     route_name = trip.route_name
-
-    submitted = False
+    trip_date = trip.trip_date
 
     if request.method == "POST":
         form = BookingForm(request.POST, initial={
-            'trip_date': trip,
+            'trip_date': trip_date,
             'route_name': route_name,
         })
             
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('booking?submitted=True')
+            messages.success(request, (
+                'Thank you! Your interest was registered.'))
+            return redirect('routes')
     else:
         form = BookingForm(initial={
             'trip_date': trip,
             'route_name': route_name,
         })
-        if 'submitted' in request.GET:
-            submitted = True
 
     context = {
         'trip': trip,
