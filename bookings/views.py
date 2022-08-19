@@ -41,34 +41,46 @@ class Trips(View):
 
 # An authenticated user can express an interest in a trip
 def booking(request, trip_id):
-    trip = Trip.objects.get(id=trip_id)
-    route_name = trip.route_name
-    trip_date = trip.trip_date
+    
+    if request.user.is_authenticated:
+        trip = Trip.objects.get(id=trip_id)
+        route_name = trip.route_name
+        trip_date = trip.trip_date
+        passenger = request.user
 
-    if request.method == "POST":
-        form = BookingForm(request.POST, initial={
-            'trip_date': trip_date,
+        if request.method == "POST":
+            form = BookingForm(request.POST, initial={
+                'trip_date': trip_date,
+                'route_name': route_name,
+                'passenger': passenger,
+            })
+                
+            if form.is_valid():
+                form.save()
+                messages.success(request, (
+                    'Thank you! Your interest was registered.'))
+                return redirect('routes')
+        else:
+            form = BookingForm(initial={
+                'trip_date': trip,
+                'route_name': route_name,
+                'passenger': passenger,
+            })
+
+        context = {
+            'trip': trip,
             'route_name': route_name,
-        })
-            
-        if form.is_valid():
-            form.save()
-            messages.success(request, (
-                'Thank you! Your interest was registered.'))
-            return redirect('routes')
+            'passenger': passenger,
+            'form': form
+            }
+
+        return render(request, 'booking.html', context)
+
+    # For non-superusers trying to access the page
     else:
-        form = BookingForm(initial={
-            'trip_date': trip,
-            'route_name': route_name,
-        })
-
-    context = {
-        'trip': trip,
-        'route_name': route_name,
-        'form': form
-        }
-
-    return render(request, 'booking.html', context)
+        messages.success(request, (
+            'You must be signed in to access this page.'))
+        return redirect('account_login')
 
 
 # Superuser can view all routes on the database from the frontend
@@ -161,6 +173,7 @@ def edit_route(request, route_id):
     # This page can only be accessed by a superuser
     if request.user.is_superuser:
         route = Route.objects.get(id=route_id)
+
         if request.method == 'POST':
             form = RouteForm(request.POST, request.FILES, instance=route)
 

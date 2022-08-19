@@ -45,6 +45,14 @@ class Trip(models.Model):
         return self.interest.count()
 
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    bio = models.TextField('Bio', blank=True)
+
+    def __str__(self):
+        return str(self.user)
+
+
 class Booking(models.Model):
     trip_date = models.ForeignKey(
         Trip, on_delete=models.CASCADE, blank=False, null=True)
