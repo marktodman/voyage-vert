@@ -28,6 +28,14 @@ class BookingForm(ModelForm):
         model = Booking
         fields = '__all__'
 
+    # Disable certain fields that are limited to the user and the trip instance
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['trip_date'].disabled = True
+        self.fields['route_name'].disabled = True
+        self.fields['passenger'].disabled = True
+        
+
 
 class CustomSignupForm(SignupForm):
 
