@@ -48,6 +48,8 @@ class Trip(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     bio = models.TextField('Bio', blank=True)
+    sailing_exp = models.IntegerField(
+        'Previous Sailing Experience', choices=SAILING_EXPERIENCE, default=0)
 
     def __str__(self):
         return str(self.user)

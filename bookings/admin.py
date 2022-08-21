@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Route, Trip, Booking
+from .models import Route, Trip, Booking, Profile
 
 
 admin.site.register(Route)
@@ -16,3 +16,8 @@ class BookingAdmin(admin.ModelAdmin):
     ordering = ('passenger',)
     search_fields = ('passenger', 'route_name')
     list_filter = ('passenger', 'route_name', 'trip_date')
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+
+    list_display = ('user',)
