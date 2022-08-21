@@ -27,6 +27,10 @@ class BookingForm(ModelForm):
     class Meta:
         model = Booking
         fields = '__all__'
+        labels = {
+            'passenger': 'Lead Passenger Username',
+            'number_passengers': 'Total Number of Passengers'
+        }
 
     # Disable certain fields that are limited to the user and the trip instance
     def __init__(self, *args, **kwargs):
