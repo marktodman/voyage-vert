@@ -35,12 +35,11 @@ class BookingForm(ModelForm):
     # Disable certain fields that are limited to the user and the trip instance
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['trip_date'].disabled = True
         self.fields['route_name'].disabled = True
         self.fields['passenger'].disabled = True
-        
 
 
+# Add custom fields to the allauth signup form
 class CustomSignupForm(SignupForm):
 
     first_name = forms.CharField(max_length=50, label='First Name')

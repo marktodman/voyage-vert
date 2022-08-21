@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, TemplateView, View
-from .models import Route, Trip
+from .models import Route, Trip, Profile
 from .forms import RouteForm, TripForm, BookingForm
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -37,6 +37,19 @@ class Trips(View):
             }
 
         return render(request, 'trips.html', context)
+
+
+# Create the Profile page
+def profile(request, profile_id):
+    profile = Profile.objects.get(id=profile_id)
+    first_name = profile.user.first_name
+
+    context = {
+        'profile': profile,
+        'first_name': first_name,
+        }
+
+    return render(request, 'profile.html', context)
 
 
 # An authenticated user can express an interest in a trip

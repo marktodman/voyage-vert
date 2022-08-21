@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center">
+    <div class="text-white text-center">
+        <h2 class="mb-3">This is your profile {{ profile }}</h2>
+        <h2 class="mb-3">This is your profile {{ first_name }}</h2>
+    </div>
+</div>
+{% endblock %}
