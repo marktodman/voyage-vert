@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, TemplateView, View
-from .models import Route, Trip, Profile
+from .models import Route, Trip, Profile, Booking
 from .forms import RouteForm, TripForm, BookingForm
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -43,11 +43,17 @@ class Trips(View):
 def profile(request, profile_id):
 
     if request.user.is_authenticated:
-        
+        # Get profile information
         profile = Profile.objects.get(id=profile_id)
+
+        # Get information for bookings
+        user = request.user.id
+        my_trips = Booking.objects.filter(passenger=user)
+
 
         context = {
             'profile': profile,
+            'my_trips': my_trips,
             }
 
         return render(request, 'profile.html', context)
