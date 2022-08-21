@@ -43,7 +43,7 @@ class Trips(View):
 def profile(request, profile_id):
 
     if request.user.is_authenticated:
-
+        
         profile = Profile.objects.get(id=profile_id)
 
         context = {
@@ -52,6 +52,11 @@ def profile(request, profile_id):
 
         return render(request, 'profile.html', context)
 
+    # For non-authenticated trying to access the page
+    else:
+        messages.success(request, (
+            'You must be signed in to access this page.'))
+        return redirect('account_login')
 
 # An authenticated user can express an interest in a trip
 def booking(request, trip_id):
@@ -90,7 +95,7 @@ def booking(request, trip_id):
 
         return render(request, 'booking.html', context)
 
-    # For non-superusers trying to access the page
+    # For non-authenticated trying to access the page
     else:
         messages.success(request, (
             'You must be signed in to access this page.'))

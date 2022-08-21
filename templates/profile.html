@@ -3,18 +3,25 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="d-flex justify-content-center align-items-center">
-    <div class="card">
-        <div class="card-header">
-            <h2>Welcome to your profile {{ profile.user.first_name }}</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 offset-2">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h2>Welcome to your profile {{ profile.user.first_name }}</h2>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Username: </strong>{{ profile }}</li>
+                        <li class="list-group-item"><strong>First Name: </strong>{{ profile.user.first_name }}</li>
+                        <li class="list-group-item"><strong>Last Name:</strong>{{ profile.user.last_name }}</li>
+                        <li class="list-group-item"><strong>Bio: </strong>{{ profile.bio }}</li>
+                        <li class="list-group-item"><strong>Sailing Experience: </strong>{{ profile.get_sailing_exp_display }}</li>
+                    </ul>
+                    <a class="btn btn-secondary btn-sm m-2 w-50 mx-auto" href="#" role="button">Edit</a>
+                    <a class="btn btn-danger btn-sm m-2 w-50 mx-auto" href="#" role="button">Delete</a>
+                </div>
         </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item"><strong>Username: </strong>{{ profile }}</li>
-            <li class="list-group-item"><strong>First Name: </strong>{{ profile.user.first_name }}</li>
-            <li class="list-group-item"><strong>Last Name:</strong>{{ profile.user.last_name }}</li>
-            <li class="list-group-item"><strong>Bio: </strong>{{ profile.bio }}</li>
-            <li class="list-group-item"><strong>Sailing Experience: </strong>{{ profile.get_sailing_exp_display }}</li>
-        </ul>
     </div>
 </div>
+
 {% endblock %}
