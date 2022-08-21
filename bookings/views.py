@@ -41,15 +41,16 @@ class Trips(View):
 
 # Create the Profile page
 def profile(request, profile_id):
-    profile = Profile.objects.get(id=profile_id)
-    first_name = profile.user.first_name
 
-    context = {
-        'profile': profile,
-        'first_name': first_name,
-        }
+    if request.user.is_authenticated:
 
-    return render(request, 'profile.html', context)
+        profile = Profile.objects.get(id=profile_id)
+
+        context = {
+            'profile': profile,
+            }
+
+        return render(request, 'profile.html', context)
 
 
 # An authenticated user can express an interest in a trip

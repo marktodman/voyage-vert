@@ -90,6 +90,16 @@ body {
     object-fit: cover;
 }
 
+/* Profile card */
+
+.card {
+    color: #22577a !important;
+}
+
+.list-group-item {
+    color: #22577a !important;
+}
+
 /* Account cards */
 
 .account-link {

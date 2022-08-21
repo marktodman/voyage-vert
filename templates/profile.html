@@ -4,9 +4,17 @@
 
 {% block content %}
 <div class="d-flex justify-content-center align-items-center">
-    <div class="text-white text-center">
-        <h2 class="mb-3">This is your profile {{ profile }}</h2>
-        <h2 class="mb-3">This is your profile {{ first_name }}</h2>
+    <div class="card">
+        <div class="card-header">
+            <h2>Welcome to your profile {{ profile.user.first_name }}</h2>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Username: </strong>{{ profile }}</li>
+            <li class="list-group-item"><strong>First Name: </strong>{{ profile.user.first_name }}</li>
+            <li class="list-group-item"><strong>Last Name:</strong>{{ profile.user.last_name }}</li>
+            <li class="list-group-item"><strong>Bio: </strong>{{ profile.bio }}</li>
+            <li class="list-group-item"><strong>Sailing Experience: </strong>{{ profile.get_sailing_exp_display }}</li>
+        </ul>
     </div>
 </div>
 {% endblock %}
