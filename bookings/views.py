@@ -50,7 +50,6 @@ def profile(request, profile_id):
         user = request.user.id
         my_trips = Booking.objects.filter(passenger=user)
 
-
         context = {
             'profile': profile,
             'my_trips': my_trips,
@@ -58,10 +57,38 @@ def profile(request, profile_id):
 
         return render(request, 'profile.html', context)
 
-    # For non-authenticated trying to access the page
+    # For non-authenticated users trying to access the page
     else:
         messages.success(request, (
             'You must be signed in to access this page.'))
+        return redirect('account_login')
+
+
+# Superuser can delete their user account
+def delete_profile(request, profile_id):
+
+    # This page can only be accessed by a superuser
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(id=profile_id)
+        user = request.user
+
+        # Check that user really wants to delete this route
+        if request.method == 'POST':
+            user.delete()
+            messages.success(request, (
+                'Success! Your profile has been deleted from the database'))
+            return redirect('home')
+
+        context = {
+            'profile': profile,
+        }
+
+        return render(request, 'delete_profile.html', context)
+
+    # For authenticated users trying to access the page
+    else:
+        messages.success(request, (
+            'You need to login to view this page.'))
         return redirect('account_login')
 
 # An authenticated user can express an interest in a trip
@@ -101,7 +128,7 @@ def booking(request, trip_id):
 
         return render(request, 'booking.html', context)
 
-    # For non-authenticated trying to access the page
+    # For non-authenticated users trying to access the page
     else:
         messages.success(request, (
             'You must be signed in to access this page.'))
@@ -270,7 +297,7 @@ def delete_route(request, route_id):
 
         return render(request, 'delete_route.html', context)
 
-# For non-superusers trying to access the page
+    # For non-superusers trying to access the page
     else:
         messages.success(request, (
             'Access denied. Please sign in as an admin.'))
