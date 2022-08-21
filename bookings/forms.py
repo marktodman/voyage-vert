@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Route, Trip, Booking
+from .models import Route, Trip, Booking, Profile
 from allauth.account.forms import SignupForm
 
 
@@ -52,3 +52,15 @@ class CustomSignupForm(SignupForm):
         user.save()
 
         return user
+
+
+# Create a new Profile
+class ProfileForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = '__all__'
+
+    # Disable the user field
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['user'].disabled = True
