@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from django.db.models.signals import post_save
 
 
 STATUS = ((0, 'Draft'), (1, 'Published'))
@@ -50,6 +51,14 @@ class Profile(models.Model):
     bio = models.TextField('Bio', blank=True)
     sailing_exp = models.IntegerField(
         'Previous Sailing Experience', choices=SAILING_EXPERIENCE, default=0)
+
+    # Automatically create a Profile when adding a new user
+    def create_profile(sender, **kwargs):
+        user = kwargs["instance"]
+        if kwargs["created"]:
+            user_profile = Profile(user=user)
+            user_profile.save()
+    post_save.connect(create_profile, sender=User)
 
     def __str__(self):
         return str(self.user)

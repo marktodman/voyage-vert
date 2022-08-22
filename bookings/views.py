@@ -1,10 +1,15 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, TemplateView, View
 from .models import Route, Trip, Profile, Booking
-from .forms import RouteForm, TripForm, BookingForm, ProfileForm
+from .forms import RouteForm, TripForm, BookingForm, ProfileForm, UserForm
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from .forms import UserForm
+from django.forms.models import inlineformset_factory
+from django.core.exceptions import PermissionDenied
 
 
 # Render Home Page
@@ -38,39 +43,6 @@ class Trips(View):
 
         return render(request, 'trips.html', context)
 
-
-
-# A User can create a Profile
-def create_profile(request):
-
-    # This page can only be accessed if signed in
-    if request.user.is_authenticated:
-
-        user = request.user
-
-        if request.method == "POST":
-            form = ProfileForm(request.POST)
-            if form.is_valid():
-                form.save()
-                messages.success(request, (
-                'Success! Your profile has been added.'))
-                return redirect('profile')
-        else:
-            form = ProfileForm(initial={
-                'user': user,
-            })
-                
-        context = {
-            'form': form,
-            }
-
-        return render(request, 'create_profile.html', context)
-
-    # For non-superusers trying to access the page
-    else:
-        messages.success(request, (
-            'Access denied. Please sign in as an admin.'))
-        return redirect('home')
 
 # User can view their Profile page
 def profile(request, profile_id):

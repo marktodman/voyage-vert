@@ -77,10 +77,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'profile' user.profile.id %}">Profile</a>
                     </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'create-profile' %}">Create Profile</a>
-                    </li>
                     {% endif %}
                     {% if user.is_superuser %}
                     <li class="nav-item dropdown">
