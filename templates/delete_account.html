@@ -12,7 +12,7 @@
                     </h5>
                     <p class="card-text">Your account and all of your data will be delelted.</p>
                     <p class="card-text">This cannot be undone!</p>
-                    <a class="btn btn-primary mx-auto" href="{% url 'profile' user.profile.id %}" role="button">Return to Profile
+                    <a class="btn btn-primary mx-auto" href="{% url 'profile' %}" role="button">Return to Profile
                         without Deleting</a>
                     <form action="" method="POST" class="form-link">
                         {% csrf_token %}

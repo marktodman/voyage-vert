@@ -21,8 +21,8 @@
                     <li class="list-group-item"><strong>Sailing Experience:
                         </strong>{{ profile.get_sailing_exp_display }}</li>
                 </ul>
-                <a class="btn btn-secondary btn-sm m-2 w-50 mx-auto" href="#" role="button">Edit Additional Info</a>
-                <a class="btn btn-danger btn-sm m-2 w-50 mx-auto" href="{% url 'delete-account' user.profile.id %}" role="button">Delete Account</a>
+                <a class="btn btn-secondary btn-sm m-2 w-50 mx-auto" href="{% url 'edit-profile' %}" role="button">Edit Additional Profile Info</a>
+                <a class="btn btn-danger btn-sm m-2 w-50 mx-auto" href="{% url 'delete-account' %}" role="button">Delete Account</a>
             </div>
             <h2 class="mt-3 text-center">My Trips:</h2>
             <div class="table-responsive">

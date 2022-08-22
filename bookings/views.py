@@ -1,15 +1,9 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.views.generic import ListView, TemplateView, View
 from .models import Route, Trip, Profile, Booking
 from .forms import RouteForm, TripForm, BookingForm, ProfileForm, UserForm
 from django.http import HttpResponseRedirect
 from django.contrib import messages
-
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from .forms import UserForm
-from django.forms.models import inlineformset_factory
-from django.core.exceptions import PermissionDenied
 
 
 # Render Home Page
@@ -44,12 +38,12 @@ class Trips(View):
         return render(request, 'trips.html', context)
 
 
-# User can view their Profile page
-def profile(request, profile_id):
+# User can view their Account page
+def profile(request):
 
     if request.user.is_authenticated:
         # Get profile information
-        profile = Profile.objects.get(id=profile_id)
+        profile = Profile.objects.get(id=request.user.profile.id)
 
         # Get information for bookings
         user = request.user.id
@@ -69,12 +63,12 @@ def profile(request, profile_id):
         return redirect('account_login')
 
 
-# Superuser can delete their user account
-def delete_account(request, profile_id):
+# User can delete their user account
+def delete_account(request):
 
-    # This page can only be accessed by a superuser
+    # This page can only be accessed by an authenticated user
     if request.user.is_authenticated:
-        profile = Profile.objects.get(id=profile_id)
+        profile = Profile.objects.get(id=request.user.profile.id)
         user = request.user
 
         # Check that user really wants to delete this route
@@ -94,6 +88,33 @@ def delete_account(request, profile_id):
     else:
         messages.success(request, (
             'You need to login to view this page.'))
+        return redirect('account_login')
+
+
+# User can edit additional profile information 
+def edit_profile(request):
+
+    # This page can only be accessed by a superuser
+    if request.user.is_authenticated:
+        form = ProfileForm(request.POST or None, instance=request.user.profile)
+
+        if request.method == "POST":
+            if form.is_valid():
+                form.save()
+                messages.success(request, (
+                'Success! Your additional profile information has been updated'))
+                return redirect('profile')
+
+        context = {
+            'form': form,
+            }
+
+        return render(request, 'edit_profile.html', context)
+
+    # For non-authenticated trying to access the page
+    else:
+        messages.success(request, (
+            'You must be signed in to access this page.'))
         return redirect('account_login')
 
 
@@ -274,7 +295,7 @@ def edit_trip(request, trip_id):
                 'form': form,
                 }
 
-        return render(request, 'edit_trip.html', context=context)
+        return render(request, 'edit_trip.html', context)
 
     # For non-superusers trying to access the page
     else:
