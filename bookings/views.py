@@ -58,12 +58,6 @@ def profile(request):
 
         return render(request, 'profile.html', context)
 
-    # For non-authenticated users trying to access the page
-    else:
-        messages.success(request, (
-            'You must be signed in to access this page.'))
-        return redirect('account_login')
-
 
 # User can delete their user account
 @login_required
@@ -87,12 +81,6 @@ def delete_account(request):
 
         return render(request, 'delete_account.html', context)
 
-    # For authenticated users trying to access the page
-    else:
-        messages.success(request, (
-            'You need to login to view this page.'))
-        return redirect('account_login')
-
 
 # User can edit user information
 @login_required 
@@ -115,11 +103,6 @@ def edit_account(request):
 
         return render(request, 'edit_account.html', context)
 
-    # For non-authenticated trying to access the page
-    else:
-        messages.success(request, (
-            'You must be signed in to access this page.'))
-        return redirect('account_login')
 
 # User can edit additional profile information
 @login_required 
@@ -141,12 +124,6 @@ def edit_profile(request):
             }
 
         return render(request, 'edit_profile.html', context)
-
-    # For non-authenticated trying to access the page
-    else:
-        messages.success(request, (
-            'You must be signed in to access this page.'))
-        return redirect('account_login')
 
 
 # An authenticated user can express an interest in a trip
