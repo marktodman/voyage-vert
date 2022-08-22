@@ -15,7 +15,7 @@
                     <li class="list-group-item"><strong>First Name: </strong>{{ profile.user.first_name }}</li>
                     <li class="list-group-item"><strong>Last Name: </strong>{{ profile.user.last_name }}</li>
                     <li class="list-group-item"><strong>Email: </strong>{{ profile.user.email }}</li>
-                    <li class="list-group-item text-center"><a class="btn btn-secondary btn-sm m-2 w-50 mx-auto" href="#" role="button">Edit Account Info</a></li>
+                    <li class="list-group-item text-center"><a class="btn btn-secondary btn-sm m-2 w-50 mx-auto" href="{% url 'edit-account' %}" role="button">Edit Account Info</a></li>
                     <li class="list-group-item text-center"><strong>Additional Information: </strong></li>
                     <li class="list-group-item"><strong>Bio: </strong>{{ profile.bio }}</li>
                     <li class="list-group-item"><strong>Sailing Experience:

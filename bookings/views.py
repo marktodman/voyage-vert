@@ -4,6 +4,7 @@ from .models import Route, Trip, Profile, Booking
 from .forms import RouteForm, TripForm, BookingForm, ProfileForm, UserForm
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 # Render Home Page
@@ -39,6 +40,7 @@ class Trips(View):
 
 
 # User can view their Account page
+@login_required
 def profile(request):
 
     if request.user.is_authenticated:
@@ -64,6 +66,7 @@ def profile(request):
 
 
 # User can delete their user account
+@login_required
 def delete_account(request):
 
     # This page can only be accessed by an authenticated user
@@ -91,7 +94,35 @@ def delete_account(request):
         return redirect('account_login')
 
 
-# User can edit additional profile information 
+# User can edit user information
+@login_required 
+def edit_account(request):
+
+    # This page can only be accessed by a superuser
+    if request.user.is_authenticated:
+        form = UserForm(request.POST or None, instance=request.user)
+
+        if request.method == "POST":
+            if form.is_valid():
+                form.save()
+                messages.success(request, (
+                'Success! Your information has been updated'))
+                return redirect('profile')
+
+        context = {
+            'form': form,
+            }
+
+        return render(request, 'edit_account.html', context)
+
+    # For non-authenticated trying to access the page
+    else:
+        messages.success(request, (
+            'You must be signed in to access this page.'))
+        return redirect('account_login')
+
+# User can edit additional profile information
+@login_required 
 def edit_profile(request):
 
     # This page can only be accessed by a superuser
