@@ -170,7 +170,7 @@ def booking(request, trip_id):
         return redirect('account_login')
 
 
-# An authenticated user can express an interest in a trip
+# An authenticated user can edit one of their expressions of interest
 @login_required
 def edit_booking(request, trip_id):
     
@@ -191,6 +191,39 @@ def edit_booking(request, trip_id):
             }
 
         return render(request, 'edit_booking.html', context)
+    
+    # For non-authenticated users trying to access the page
+    else:
+        messages.success(request, (
+            'You must be signed in to access this page.'))
+        return redirect('account_login')
+
+
+# An authenticated user can delete one of their expressions of interest
+@login_required
+def delete_booking(request, trip_id):
+
+    if request.user.is_authenticated:
+        booking = Booking.objects.get(id=trip_id)
+
+        # Check that user really wants to delete this trip
+        if request.method == 'POST':
+            booking.delete()
+            messages.success(request, (
+                'Success! The trip has been deleted from the database'))
+            return redirect('profile')
+
+        context = {
+                'booking': booking,
+                }
+
+        return render(request, 'delete_booking.html', context)
+
+    # For non-authenticated users trying to access the page
+    else:
+        messages.success(request, (
+            'You must be signed in to access this page.'))
+        return redirect('account_login')
 
 
 # Superuser can view all routes on the database from the frontend
@@ -363,7 +396,7 @@ def delete_route(request, route_id):
 
 
 # Superuser can delete a Trip
-def delete_trip(request, booking_id):
+def delete_trip(request, trip_id):
 
     # This page can only be accessed by a superuser
     if request.user.is_superuser:

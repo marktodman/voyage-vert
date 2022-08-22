@@ -47,7 +47,7 @@
                             <td>{{ trip.route_name }}</td>
                             <td>{{ trip.number_passengers }}</td>
                             <td>{{ trip.get_cabin_type_display }}</td>
-                            <td><a class="btn btn-secondary btn-sm m-2" href="{% url 'edit-booking' trip.id %}" role="button">Edit Booking</a><a class="btn btn-danger btn-sm m-2" href="#" role="button">Cancel Booking</a></td>
+                            <td><a class="btn btn-secondary btn-sm m-2" href="{% url 'edit-booking' trip.id %}" role="button">Edit Booking</a><a class="btn btn-danger btn-sm m-2" href="{% url 'delete-booking' trip.id %}" role="button">Cancel Booking</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>

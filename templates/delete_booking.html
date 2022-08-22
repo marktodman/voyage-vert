@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="col-12 mt-3">
+    <div class="row">
+        <div class="col-md-6 col-lg-4 mx-auto">
+            <div class="card text-center">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-center">Are you sure you want to delete your expression of interest from
+                        <strong>{{ booking.route_name }}</strong> on <strong>{{ booking.trip_date }}</strong> ?
+                    </h5>
+                    <p class="card-text">This cannot be undone!</p>
+                    <a class="btn btn-primary mx-auto" href="{% url 'profile' %}" role="button">Return to Your Profile
+                        without Deleting</a>
+                    <form action="" method="POST" class="form-link">
+                        {% csrf_token %}
+                        <input class="btn btn-danger mb-2 mt-3" type="submit" value="Delete">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
