@@ -59,6 +59,9 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email']
+        labels = {
+            'username': 'Username (cannot be changed)',
+        }
 
     # Disable the username field and remove help text
     def __init__(self, *args, **kwargs):

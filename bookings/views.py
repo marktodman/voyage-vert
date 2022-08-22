@@ -170,6 +170,29 @@ def booking(request, trip_id):
         return redirect('account_login')
 
 
+# An authenticated user can express an interest in a trip
+@login_required
+def edit_booking(request, trip_id):
+    
+    if request.user.is_authenticated:
+        booking = Booking.objects.get(id=trip_id)
+        form = BookingForm(request.POST or None, instance=booking)
+
+        if request.method == "POST":
+            if form.is_valid():
+                form.save()
+                messages.success(request, (
+                    'Your expression of interest has been updated.'))
+                return redirect('profile')
+
+        context = {
+            'form': form,
+            'booking': booking
+            }
+
+        return render(request, 'edit_booking.html', context)
+
+
 # Superuser can view all routes on the database from the frontend
 def admin_panel(request):
 
