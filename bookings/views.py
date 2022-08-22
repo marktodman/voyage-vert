@@ -70,7 +70,7 @@ def profile(request, profile_id):
 
 
 # Superuser can delete their user account
-def delete_profile(request, profile_id):
+def delete_account(request, profile_id):
 
     # This page can only be accessed by a superuser
     if request.user.is_authenticated:
@@ -88,7 +88,7 @@ def delete_profile(request, profile_id):
             'profile': profile,
         }
 
-        return render(request, 'delete_profile.html', context)
+        return render(request, 'delete_account.html', context)
 
     # For authenticated users trying to access the page
     else:

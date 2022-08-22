@@ -8,9 +8,9 @@
             <div class="card text-center">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title text-center">Are you sure you want to delete
-                        your profile {{ profile.user.first_name }}?
+                        your account {{ profile.user.first_name }}?
                     </h5>
-                    <p class="card-text">Your profile and all of your data will be delelted.</p>
+                    <p class="card-text">Your account and all of your data will be delelted.</p>
                     <p class="card-text">This cannot be undone!</p>
                     <a class="btn btn-primary mx-auto" href="{% url 'profile' user.profile.id %}" role="button">Return to Profile
                         without Deleting</a>
