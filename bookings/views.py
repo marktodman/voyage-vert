@@ -86,7 +86,7 @@ def delete_account(request):
 @login_required 
 def edit_account(request):
 
-    # This page can only be accessed by a superuser
+    # This page can only be accessed by an authenticated user
     if request.user.is_authenticated:
         form = UserForm(request.POST or None, instance=request.user)
 
@@ -108,7 +108,7 @@ def edit_account(request):
 @login_required 
 def edit_profile(request):
 
-    # This page can only be accessed by a superuser
+    # This page can only be accessed by an authenticated user
     if request.user.is_authenticated:
         form = ProfileForm(request.POST or None, instance=request.user.profile)
 

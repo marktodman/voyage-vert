@@ -58,16 +58,17 @@ class CustomSignupForm(SignupForm):
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email']
+        fields = ['username', 'first_name', 'last_name', 'email']
+
+    # Disable the username field and remove help text
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].disabled = True
+        self.fields['username'].help_text = None
 
 
 # Profile form
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = '__all__'
-
-    # Disable the username field
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['user'].disabled = True
+        fields = ['bio','sailing_exp']
