@@ -5,6 +5,7 @@ from .forms import RouteForm, TripForm, BookingForm, ProfileForm, UserForm
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 
 
 # Render Home Page
@@ -128,7 +129,7 @@ def edit_profile(request):
 
 # An authenticated user can express an interest in a trip
 def booking(request, trip_id):
-    
+
     if request.user.is_authenticated:
         trip = Trip.objects.get(id=trip_id)
         route_name = trip.route_name
@@ -191,7 +192,7 @@ def edit_booking(request, trip_id):
             }
 
         return render(request, 'edit_booking.html', context)
-    
+
     # For non-authenticated users trying to access the page
     else:
         messages.success(request, (
@@ -201,12 +202,12 @@ def edit_booking(request, trip_id):
 
 # An authenticated user can delete one of their expressions of interest
 @login_required
-def delete_booking(request, trip_id):
+def cancel_booking(request, trip_id):
 
     if request.user.is_authenticated:
         booking = Booking.objects.get(id=trip_id)
 
-        # Check that user really wants to delete this trip
+        # Check that user really wants to cancel
         if request.method == 'POST':
             booking.delete()
             messages.success(request, (
@@ -217,7 +218,7 @@ def delete_booking(request, trip_id):
                 'booking': booking,
                 }
 
-        return render(request, 'delete_booking.html', context)
+        return render(request, 'cancel_booking.html', context)
 
     # For non-authenticated users trying to access the page
     else:
@@ -232,11 +233,17 @@ def admin_panel(request):
     # This page can only be accessed by a superuser
     if request.user.is_superuser:
         routes = Route.objects.all()
-        trips = Trip.objects.all()
+        trips = Trip.objects.all()        
+
+        # Number of bookings by user on each trip
+        num_passenger = Trip.objects.annotate(num_pass=Count('booking'))
+        ordered_list = num_passenger.order_by('route_name')
 
         context = {
                 'routes': routes,
                 'trips': trips,
+                'num_passenger': num_passenger,
+                'ordered_list': ordered_list,
                 }
 
         return render(request, 'admin_panel.html', context)
