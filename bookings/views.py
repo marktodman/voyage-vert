@@ -235,7 +235,7 @@ def admin_panel(request):
         routes = Route.objects.all()
         trips = Trip.objects.all()        
 
-        # Number of bookings by user on each trip
+        # Number of bookings on each trip
         num_passenger = Trip.objects.annotate(num_pass=Count('booking'))
         ordered_list = num_passenger.order_by('route_name')
 
