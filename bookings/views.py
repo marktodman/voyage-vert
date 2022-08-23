@@ -18,7 +18,6 @@ class RouteList(ListView):
     model = Route
     queryset = Route.objects.filter(status=1).order_by('route_name')
     template_name = 'routes.html'
-    paginate_by = 6
 
 
 # Create Trips View

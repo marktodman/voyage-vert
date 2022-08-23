@@ -2,7 +2,10 @@ from django.contrib import admin
 from .models import Route, Trip, Booking, Profile
 
 
-admin.site.register(Route)
+@admin.register(Route)
+class RouteAdmin(admin.ModelAdmin):
+
+    list_display = ('route_name', 'status')
 
 @admin.register(Trip)
 class TripAdmin(admin.ModelAdmin):

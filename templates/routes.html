@@ -21,10 +21,10 @@
                 {% if "placeholder" in route.featured_image.url %}
                 <img class="card-img-top image-responsive"
                     src="https://res.cloudinary.com/mt226/image/upload/v1659624957/jtjl3aynyzh6deheh6no.jpg"
-                    alt="sailing image">
+                    alt="sailing image" style="max-height: 300px">
                 {% else %}
                 <img class="card-img-top image-responsive" src=" {{ route.featured_image.url }}"
-                    alt="destination image">
+                    alt="destination image" style="max-height: 300px">
                 {% endif %}
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title text-uppercase text-center">{{ route.route_name }}</h5>
