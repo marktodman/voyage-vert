@@ -137,7 +137,7 @@ def booking(request, trip_id):
 
         if request.method == "POST":
             form = BookingForm(request.POST, initial={
-                'trip_date': trip_date,
+                'trip_date': trip,
                 'route_name': route_name,
                 'passenger': passenger,
             })
@@ -156,6 +156,7 @@ def booking(request, trip_id):
 
         context = {
             'trip': trip,
+            'trip_date': trip_date,
             'route_name': route_name,
             'passenger': passenger,
             'form': form
@@ -426,5 +427,3 @@ def delete_trip(request, trip_id):
         messages.success(request, (
             'Access denied. Please sign in as an admin.'))
         return redirect('home')
-
-
