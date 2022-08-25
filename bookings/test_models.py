@@ -7,6 +7,7 @@ class TestModels(TestCase):
     """Test Model"""
 
     def setUp(self):
+        """Set up test parameters"""
         self.user = User(username='Test_User')
         self.profile = Profile(bio='Test bio')
         self.route = Route(route_name='London to Amsterdam')
