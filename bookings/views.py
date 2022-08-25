@@ -202,7 +202,7 @@ def edit_booking(request, trip_id):
 
 # An authenticated user can delete one of their expressions of interest
 @login_required
-def cancel_booking(request, trip_id):
+def delete_booking(request, trip_id):
 
     if request.user.is_authenticated:
         booking = Booking.objects.get(id=trip_id)
@@ -218,7 +218,7 @@ def cancel_booking(request, trip_id):
                 'booking': booking,
                 }
 
-        return render(request, 'cancel_booking.html', context)
+        return render(request, 'delete_booking.html', context)
 
     # For non-authenticated users trying to access the page
     else:

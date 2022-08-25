@@ -12,10 +12,10 @@
                     </h5>
                     <p class="card-text">This cannot be undone!</p>
                     <a class="btn btn-primary mx-auto" href="{% url 'profile' %}" role="button">Return to Your Profile
-                        without Cancelling</a>
+                        without Deleting</a>
                     <form action="" method="POST" class="form-link">
                         {% csrf_token %}
-                        <input class="btn btn-danger mb-2 mt-3" type="submit" value="Cancel">
+                        <input class="btn btn-danger mb-2 mt-3" type="submit" value="Delete Booking">
                     </form>
                 </div>
             </div>
