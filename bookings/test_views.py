@@ -12,9 +12,9 @@ class TestViews(TestCase):
         self.client = Client()
         self.home_url = reverse('home')
         self.routes_url = reverse('routes')
-        username = "Test_User"
+        username = "Authenticated_User"
         password = "password7475"
-        self.user = User.objects.create_superuser(
+        self.user = User.objects.create_user(
             username=username, password=password)
 
     def test_home_page_loads_correctly(self):
@@ -49,7 +49,8 @@ class TestViews(TestCase):
             description='Test',
             status=1
         )
-        self.client.login(username="Test_User", password="password7475")
+        self.client.login(
+            username="Authenticated_User", password="password7475")
         response = self.client.get(f'/booking/{trip.id}')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'booking.html')
@@ -63,3 +64,18 @@ class TestViews(TestCase):
         )
         response = self.client.get(f'/booking/{trip.id}')
         self.assertEqual(response.status_code, 302)
+
+    def test_admin_panel_page_cannot_be_accessed_unless_superuser(self):
+        """Test user must be superuser to access booking page"""
+        response = self.client.get('/admin_panel')
+        self.assertEqual(response.status_code, 302)
+        self.client.login(
+            username="Authenticated_User", password="password7475")
+        response = self.client.get('/admin_panel')
+        self.assertEqual(response.status_code, 302)
+        self.user = User.objects.create_superuser(
+            username="Super_User", password="superpassword")
+        self.client.login(
+            username="Super_User", password="superpassword")
+        response = self.client.get('/admin_panel')
+        self.assertEqual(response.status_code, 200)
