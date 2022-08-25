@@ -14,7 +14,7 @@ class TestViews(TestCase):
         self.routes_url = reverse('routes')
         username = "Test_User"
         password = "password7475"
-        self.user = User.objects.create_user(
+        self.user = User.objects.create_superuser(
             username=username, password=password)
 
     def test_home_page_loads_correctly(self):
@@ -53,3 +53,13 @@ class TestViews(TestCase):
         response = self.client.get(f'/booking/{trip.id}')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'booking.html')
+
+    def test_booking_page_cannot_be_accessed_unless_user_authenticated(self):
+        """Test user must be authenticated to access booking page"""
+        trip = Trip.objects.create(
+            trip_date='2029-03-01',
+            description='Test',
+            status=1
+        )
+        response = self.client.get(f'/booking/{trip.id}')
+        self.assertEqual(response.status_code, 302)
