@@ -66,7 +66,7 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code, 302)
 
     def test_admin_panel_page_cannot_be_accessed_by_authenticated_user(self):
-        """Test user must be superuser to access booking page"""
+        """Test admin panel cannot be accessed by authenticated users"""
         self.client.login(
             username="Authenticated_User", password="password7475")
         response = self.client.get('/admin_panel')
