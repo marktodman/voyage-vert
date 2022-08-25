@@ -65,17 +65,18 @@ class TestViews(TestCase):
         response = self.client.get(f'/booking/{trip.id}')
         self.assertEqual(response.status_code, 302)
 
-    def test_admin_panel_page_cannot_be_accessed_unless_superuser(self):
+    def test_admin_panel_page_cannot_be_accessed_by_authenticated_user(self):
         """Test user must be superuser to access booking page"""
-        response = self.client.get('/admin_panel')
-        self.assertEqual(response.status_code, 302)
         self.client.login(
             username="Authenticated_User", password="password7475")
         response = self.client.get('/admin_panel')
         self.assertEqual(response.status_code, 302)
+
+    def test_admin_panel_can_be_accessed_by_superuser(self):
+        """Test superuser can access admin panel frontend"""
         self.user = User.objects.create_superuser(
-            username="Super_User", password="superpassword")
+            username="Super_User", password="superpassword12")
         self.client.login(
-            username="Super_User", password="superpassword")
+            username="Super_User", password="superpassword12")
         response = self.client.get('/admin_panel')
         self.assertEqual(response.status_code, 200)
