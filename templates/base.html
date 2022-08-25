@@ -67,7 +67,27 @@
                             </li>
                             {% endfor %}
                         </ul>
-                    {% if user.is_authenticated %}
+                        {% if user.profile.id %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}">Account</a>
+                    </li>
+                    {% endif %}
+                    {% if user.is_superuser %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="{% url 'routes' %}" id="navbarScrollingDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Admin
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarScrollingDropdown">
+                            <li><a class="dropdown-item" href="{% url 'admin-panel' %}">Admin Panel</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'add-route' %}">Add Route</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'add-trip' %}">Add Trip</a>
+                            </li>
+                        </ul>
+                        {% endif %}
+                        {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                     </li>
@@ -79,37 +99,19 @@
                         <a class="nav-link" href="{% url 'account_login' %}">Login</a>
                     </li>
                     {% endif %}
-                    {% if user.profile.id %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'profile' %}">Account</a>
-                    </li>
-                    {% endif %}
-                    {% if user.is_superuser %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="{% url 'routes' %}" id="navbarScrollingDropdown"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Admin
-                        </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarScrollingDropdown">
-                        <li><a class="dropdown-item" href="{% url 'admin-panel' %}">Admin Panel</a>
-                        </li><li><a class="dropdown-item" href="{% url 'add-route' %}">Add Route</a>
-                        </li>
-                        <li><a class="dropdown-item" href="{% url 'add-trip' %}">Add Trip</a>
-                        </li>
-                    </ul>
-                    {% endif %}
                 </ul>
             </div>
         </div>
     </nav>
-<!-- MESSAGE FEEDBACK FOR USER ACTIONS -->
+    <!-- MESSAGE FEEDBACK FOR USER ACTIONS -->
     <div class="container">
         <div class="row">
             <div class="d-flex justify-content-center align-items-center">
                 {% for message in messages %}
                 <div class="alert alert-dismissible fade show" id="msg" role="alert">
                     {{ message | safe }}
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
+                        aria-label="Close"></button>
                 </div>
                 {% endfor %}
             </div>
@@ -126,17 +128,21 @@
     <footer class="footer mt-5 pt-3 pb-1">
         <p class="m-0 text-center">&copy; Mark Todman <span id="copyright"></span></p>
         <p class="m-0 text-center">Follow us: <a href="https://facebook.com" target="_blank" rel="noopener"
-            aria-label="visit our Facebook page (opens in a new tab)"><i class="fab fa-facebook-square ms-3 text-white"></i></a>
+                aria-label="visit our Facebook page (opens in a new tab)"><i
+                    class="fab fa-facebook-square ms-3 text-white"></i></a>
             <a href="https://twitter.com" target="_blank" rel="noopener"
-                    aria-label="visit our Twitter page (opens in a new tab)"><i class="fab fa-twitter-square ms-3 text-white"></i></a>
-                    <a href="https://instagram.com" target="_blank" rel="noopener"
-                    aria-label="visit our Instagram page (opens in a new tab)"><i class="fab fa-instagram-square ms-3 text-white"></i></a>
+                aria-label="visit our Twitter page (opens in a new tab)"><i
+                    class="fab fa-twitter-square ms-3 text-white"></i></a>
+            <a href="https://instagram.com" target="_blank" rel="noopener"
+                aria-label="visit our Instagram page (opens in a new tab)"><i
+                    class="fab fa-instagram-square ms-3 text-white"></i></a>
             <a href="https://youtube.com" target="_blank" rel="noopener"
-                    aria-label="visit our YouTube page (opens in a new tab)"><i class="fab fa-youtube-square ms-3 text-white"></i></a></p>
+                aria-label="visit our YouTube page (opens in a new tab)"><i
+                    class="fab fa-youtube-square ms-3 text-white"></i></a></p>
     </footer>
 
     <script>
-    // Scripts adapted from Code Institute provided code 
+        // Scripts adapted from Code Institute provided code 
         setTimeout(function () {
             let messages = document.getElementById("msg");
             let alert = new bootstrap.Alert(messages);
