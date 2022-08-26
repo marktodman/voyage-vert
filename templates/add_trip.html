@@ -3,16 +3,18 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-
+<!-- Can only be accessed by a Superuser -->
 {% if user.is_superuser %}
 <div class="d-flex justify-content-center align-items-center">
     <div class="text-white text-center">
+        <!-- If the form is submitted provide options -->
         {% if submitted %}
         <h2>Your new trip was added to the database</h2>
         <a class="btn btn-dark btn-lg m-2" href="{% url 'add-trip' %}" role="button">Add another trip</a>
         <a class="btn btn-dark btn-lg m-2" href="{% url 'routes' %}" role="button">View Routes</a>
         <a class="btn btn-dark btn-lg m-2" href="{% url 'admin-panel' %}" role="button">Admin Panel</a>
         {% else %}
+        <!-- Add Route Form -->
         <h1 class="mb-3">Add a Trip to the Database</h1>
         <form action="" method="POST">
             {% csrf_token %}
