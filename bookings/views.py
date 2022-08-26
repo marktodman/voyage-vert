@@ -191,7 +191,7 @@ def edit_booking(request, trip_id):
             if form.is_valid():
                 form.save()
                 messages.success(request, (
-                    'Your expression of interest has been updated.'))
+                    'Succes! Your booking has been updated.'))
                 return redirect('profile')
 
         context = {
@@ -220,7 +220,7 @@ def delete_booking(request, trip_id):
         if request.method == 'POST':
             booking.delete()
             messages.success(request, (
-                'Success! The trip has been deleted from the database'))
+                'Success! Your booking has been deleted from the database'))
             return redirect('profile')
 
         context = {
