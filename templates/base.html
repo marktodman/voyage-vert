@@ -37,9 +37,7 @@
 </head>
 
 <body class="d-flex flex-column h-100 main-bg">
-
     <!-- NAVIGATION -->
-
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}"><span class="vv-logo">Voyage</span><span
@@ -49,6 +47,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarcollapse">
+                <!-- Navigation for all Users -->
                 <ul class="navbar-nav mb-2 mb-lg-0 nav-text">
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
@@ -67,11 +66,13 @@
                             </li>
                             {% endfor %}
                         </ul>
+                        <!-- Account link for authenticated Users -->
                         {% if user.profile.id %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'profile' %}">Account</a>
                     </li>
                     {% endif %}
+                    <!-- Admin functions for Superusers -->
                     {% if user.is_superuser %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="{% url 'routes' %}" id="navbarScrollingDropdown"
@@ -87,7 +88,8 @@
                             </li>
                         </ul>
                         {% endif %}
-                        {% if user.is_authenticated %}
+                    <!-- Account functions for all authenticated Users -->
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                     </li>
