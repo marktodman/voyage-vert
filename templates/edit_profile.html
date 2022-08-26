@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 
 {% load crispy_forms_tags %}
-
+<!-- Template for User to edit Profile Information -->
 {% block content %}
 <div class="d-flex justify-content-center align-items-center">
     <div class="text-white text-center">
         <h2 class="mb-3">Edit your profile information</h2>
+        <!-- Profile form -->
         <form action="" method="POST" class="form-link"  enctype="multipart/form-data">
             {% csrf_token %}
 
@@ -13,6 +14,7 @@
 
             <button class="btn btn-dark mb-2 mt-3" type="submit">Save Changes</button>
         </form>
+        <!-- Return to Account page without saving -->
         <a class="btn btn-dark mb-2 mt-3" href="{% url 'profile' %}" role="button">Return to Account Without Saving</a>
     </div>
 </div>
