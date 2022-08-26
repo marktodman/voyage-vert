@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 
 {% load crispy_forms_tags %}
-
+<!-- Template for Superuser to edit Trip information -->
 {% block content %}
 <div class="d-flex justify-content-center align-items-center">
     <div class="text-white text-center">
+        <!-- Trip information -->
         <h2 class="mb-3">Edit {{ trip.route_name }} trip scheduled for {{ trip.trip_date }}</h2>
+        <!-- Trip form -->
         <form action="" method="POST" class="form-link">
             {% csrf_token %}
 
@@ -13,6 +15,7 @@
 
             <button class="btn btn-dark mb-2 mt-3" type="submit">Save Changes</button>
         </form>
+        <!-- Return to Admin panel without saving -->
         <a class="btn btn-dark mb-2 mt-3" href="{% url 'admin-panel' %}" role="button">Return to Admin Panel without Saving</a>
     </div>
 </div>

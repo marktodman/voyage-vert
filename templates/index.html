@@ -1,18 +1,21 @@
 {% extends "base.html" %}
-
+<!-- Home page template -->
 {% block content %}
 <div class="p-5 text-center bg-image bg-photo d-flex justify-content-center align-items-center">
     <div class="home-overlay">
         <div class="d-flex justify-content-center align-items-center">
             <div class="text-white">
+                <!-- Landing page text -->
                 <h1 class="mb-3 text-uppercase">Join the global transport revolution</h1>
                 <h4 class="mb-3">Our vision is a fleet of modern, fast, high-tech sailing ships that provide a
                     sustainable alternative to air travel.</h4>
                 <p>To make this happen we need to identify viable sailing routes to popular destinations.</p>
                 <p>Register your interest today for trips starting in 2023 and join the VoyageVert sustainable travel revolution.</p>
+                <!-- If user already logged in show link to Routes page -->
                 {% if user.is_authenticated %}
                 <a class="btn btn-dark btn-lg m-2" href="{% url 'routes' %}" role="button">View Routes</a>
                 {% else %}
+                <!-- If user not logged in show links to Routes, Register and Login -->
                 <a class="btn btn-dark btn-lg m-2" href="{% url 'routes' %}" role="button">View Routes</a>
                 <a class="btn btn-dark btn-lg m-2" href="{% url 'account_login' %}" role="button">Login</a>
                 <a class="btn btn-dark btn-lg m-2" href="{% url 'account_signup' %}" role="button">Register</a>
