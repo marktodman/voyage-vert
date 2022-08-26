@@ -1,20 +1,22 @@
 {% extends "base.html" %}
-
-
+<!-- Template for Superuser to confirm Trip deletion  -->
 {% block content %}
 <div class="col-12 mt-3">
     <div class="row">
         <div class="col-md-6 col-lg-4 mx-auto">
             <div class="card text-center">
                 <div class="card-body d-flex flex-column">
+                    <!-- Trip Information -->
                     <h5 class="card-title text-center">Are you sure you want to delete the trip from
                         <strong>{{ trip.route_name }}</strong> on <strong>{{ trip.trip_date }}</strong> from the
                         database?
                     </h5>
                     <p class="card-text">This cannot be undone!</p>
+                    <!-- Return to Admin Panel without deleting -->
                     <a class="btn btn-primary mx-auto" href="{% url 'admin-panel' %}" role="button">Return to Admin
                         Panel
                         without Deleting</a>
+                    <!-- Delete Trip -->
                     <form action="" method="POST" class="form-link">
                         {% csrf_token %}
                         <input class="btn btn-danger mb-2 mt-3" type="submit" value="Delete">
