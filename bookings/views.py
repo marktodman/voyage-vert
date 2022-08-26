@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, TemplateView, View
 from .models import Route, Trip, Profile, Booking
 from .forms import RouteForm, TripForm, BookingForm, ProfileForm, UserForm
@@ -8,21 +8,23 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Count
 
 
-# Render Home Page
+# Home Page
 class HomePage(TemplateView):
+    """Create Home page view"""
     template_name = 'index.html'
 
 
-# Create Route View 
-class RouteList(ListView): 
+# Route View 
+class RouteList(ListView):
+    """Create Route View"""
     model = Route
     queryset = Route.objects.filter(status=1).order_by('route_name')
     template_name = 'routes.html'
 
 
-# Create Trips View
+# Trips View
 class Trips(View):
-
+    """Create Trips View"""
     def get(self, request, route_id, *args, **kwargs):
         queryset = Route.objects.filter(status=1)
         route = get_object_or_404(queryset, id=route_id)
@@ -39,9 +41,10 @@ class Trips(View):
         return render(request, 'trips.html', context)
 
 
-# User can view their Account page
+# Account page
 @login_required
 def profile(request):
+    """Create the Account page. Require login to access"""
 
     if request.user.is_authenticated:
         # Get profile information
@@ -59,9 +62,10 @@ def profile(request):
         return render(request, 'profile.html', context)
 
 
-# User can delete their user account
+# Delete User Account
 @login_required
 def delete_account(request):
+    """Authenticated user can delete their account"""
 
     # This page can only be accessed by an authenticated user
     if request.user.is_authenticated:
@@ -82,9 +86,10 @@ def delete_account(request):
         return render(request, 'delete_account.html', context)
 
 
-# User can edit user information
+# Edit Account Information
 @login_required 
 def edit_account(request):
+    """Authenticated user can edit their user information"""
 
     # This page can only be accessed by an authenticated user
     if request.user.is_authenticated:
@@ -104,9 +109,10 @@ def edit_account(request):
         return render(request, 'edit_account.html', context)
 
 
-# User can edit additional profile information
+# Edit Profile Information
 @login_required 
 def edit_profile(request):
+    """Authenticated user can edit their additional Profile information"""
 
     # This page can only be accessed by an authenticated user
     if request.user.is_authenticated:
@@ -126,8 +132,9 @@ def edit_profile(request):
         return render(request, 'edit_profile.html', context)
 
 
-# An authenticated user can express an interest in a trip
+# Booking request
 def booking(request, trip_id):
+    """Authenticated user can express interest in a trip and make a booking"""
 
     if request.user.is_authenticated:
         trip = Trip.objects.get(id=trip_id)
@@ -171,9 +178,10 @@ def booking(request, trip_id):
         return redirect('account_login')
 
 
-# An authenticated user can edit one of their expressions of interest
+# Edit booking
 @login_required
 def edit_booking(request, trip_id):
+    """Authenticated user can edit one of their expressions of interest"""
     
     if request.user.is_authenticated:
         booking = Booking.objects.get(id=trip_id)
@@ -203,6 +211,7 @@ def edit_booking(request, trip_id):
 # An authenticated user can delete one of their expressions of interest
 @login_required
 def delete_booking(request, trip_id):
+    """Authenticated user can delete one of their expressions of interest"""
 
     if request.user.is_authenticated:
         booking = Booking.objects.get(id=trip_id)
@@ -227,8 +236,9 @@ def delete_booking(request, trip_id):
         return redirect('account_login')
 
 
-# Superuser can view all routes on the database from the frontend
+# Admin Panel
 def admin_panel(request):
+    """Superuser can view all routes on the database from the frontend"""
 
     # This page can only be accessed by a superuser
     if request.user.is_superuser:
@@ -255,8 +265,9 @@ def admin_panel(request):
         return redirect('home')
 
 
-# Superuser can add a route to the database from the frontend
+# Add Route
 def add_route(request):
+    """Superuser can add a route to the database from the frontend"""
 
     # This page can only be accessed by a superuser
     if request.user.is_superuser:
@@ -286,8 +297,9 @@ def add_route(request):
         return redirect('home')
 
 
-# Superuser can add a trip to the database from the frontend
+# Add Trip
 def add_trip(request):
+    """Superuser can add a trip to the database from the frontend"""
 
     # This page can only be accessed by a superuser
     if request.user.is_superuser:
@@ -317,8 +329,9 @@ def add_trip(request):
         return redirect('home')
 
 
-# Superuser can edit routes on the database from the frontend
+# Edit Route
 def edit_route(request, route_id):
+    """Superuser can edit routes on the database from the frontend"""
 
     # This page can only be accessed by a superuser
     if request.user.is_superuser:
@@ -348,8 +361,9 @@ def edit_route(request, route_id):
         return redirect('home')
 
 
-# Superuser can edit trips on the database from the frontend
+# Edit Trip
 def edit_trip(request, trip_id):
+    """Superuser can edit trips on the database from the frontend"""
 
     # This page can only be accessed by a superuser
     if request.user.is_superuser:
@@ -375,8 +389,9 @@ def edit_trip(request, trip_id):
         return redirect('home')
 
 
-# Superuser can delete a Route
+# Delete Route
 def delete_route(request, route_id):
+    """Superuser can delete a Route"""
 
     # This page can only be accessed by a superuser
     if request.user.is_superuser:
@@ -402,8 +417,9 @@ def delete_route(request, route_id):
         return redirect('home')
 
 
-# Superuser can delete a Trip
+# Delete Trip
 def delete_trip(request, trip_id):
+    """Superuser can delete a Trip"""
 
     # This page can only be accessed by a superuser
     if request.user.is_superuser:
