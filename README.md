@@ -72,6 +72,77 @@ To create a web application that engages users in providing feedback on particul
 <br>
 
 ---
+## SKELETON
+
+The skeleton of the site was designed in accordance with the scope, focusing on consistent and intuitive UX that could easily scale as the site data expanded with additional routes and trips. Wireframes for the main user and admin pages were designed using Balsamiq. 
+
+The wireframes provided a basic outline for the site, which was modified according to development requirements during production and user feedback.
+
+<details>
+<summary><strong>Wireframes</strong></summary>
+<br>
+Landing Page Wireframe:
+
+![Landing Page Wireframe](/static/images/readme/home-wireframe.png)
+<br>
+<br>
+Routes Page Wireframe:
+
+![Routes Page Wireframe](/static/images/readme/routes-wireframe.png)
+<br>
+<br>
+Trips Page Wireframe:
+
+![Trips Page Wireframe](/static/images/readme/trips-wireframe.png)
+<br>
+<br>
+Booking Page Wireframe:
+
+![Booking Page Wireframe](/static/images/readme/booking-wireframe.png)
+<br>
+<br>
+Account Page Wireframe:
+
+![Account Page Wireframe](/static/images/readme/account-wireframe.png)
+<br>
+<br>
+Admin Panel Page Wireframe:
+
+![Admin Panel Page Wireframe](/static/images/readme/admin-wireframe.png)
+<br>
+<br>
+Delete Confirmation Page Wireframe:
+
+![Delete Confirmation Page Wireframe](/static/images/readme/delete-wireframe.png)
+<br>
+<br>
+</details>
+<br>
+
+---
+## SURFACE
+
+The surface was desgined to be clean and allow focus on the routes, trips and booking information. The routes and trips styling was based on cards which included destination images, together with descriptive information and clear actions. 
+
+Color palletes were chosen to reflect the theme of the sea. Two color palletes were chosen using [Coolors](https://coolors.co/). A dark blue background with white text and white cards was utilised to reflect the sea theme and to help key information stand out for the user.
+
+<details>
+<summary><strong>Color Palettes</strong></summary>
+<br>
+
+![Color palette 1](/static/images/readme/voyagevert-palette-1.png)
+<br>
+<br>
+
+![Color palette 2](/static/images/readme/voyagevert-palette-2.png)
+</details>
+<br>
+
+Route and trip cards were chosen to be white to allow the important information to standout. This design was taken through the site with color text on a white background for all forms and tables. 
+
+Buttons were styled to standout with hover actions to provide user feedback. All delete or cancel buttons were styled in red as a widely accepted color to direct user caution.
+
+---
 ## PLANNING
 
 ## Agile Development Practices
