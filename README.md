@@ -17,6 +17,7 @@ The [GitHub repository.](https://github.com/marktodman/voyage-vert)
 1. [Skeleton](#skeleton)
 1. [Surface](#surface)
 1. [Planning](#planning)
+1. [Features](#features)
 1. [Testing](#testing)
 1. [Deployment](#deployment)
 1. [Future Development Ideas](#future-development-ideas)
@@ -197,4 +198,110 @@ Through the process of the mid-point review, additional User Stories regarding A
 At the conclusion of this stage of the project, there is one outstanding User Story relating to a Newsletter sign up. As the Iterations progressed and the project neared the shipping deadline, the Newsletter User Story was down-prioritised relative to the other User Stories and, ultimately, ended up as a Won't Have User Story for this release.
 </details>
 <br>
+
+---
+## FEATURES
+
+## Navbar
+
+The navbar is a responsive element, which collapses to a hamburger icon on smaller screens. The navar is persistent on all pages. The contents of the navbar change depending on whether the user is 1) a guest 2) an authenticated user 3) a superuser.
+
+Guest Navbar. Register and Login navigation is available:
+
+![Guest Navbar](/static/images/readme/guest-navbar.png)
+
+Authenticated User Navbar. Account and Logout navigation is available:
+
+![User Navbar](/static/images/readme/user-navbar.png)
+
+Superuser Navbar. Admin dropdown is available:
+
+![Superuser Navbar](/static/images/readme/superuser-navbar.png)
+
+The Routes page containing a summary of all available routes is on all navbar versions. The Trips dropdown menu provides a summary of all available trips by Route. The user clicks on a route and will be taken to all available trips on that route. This bypasses the routes page and enhances UX: 
+
+![Trips dropdown menu](/static/images/readme/trips-navbar.png)
+
+Superusers have direct access to the frontend Admin Panel page from the navbar. The Superuser can edit and delete all routes and trips (whether published or draft) from the Admin Panel. Superusers also have quick access to Add Route and Add Trip functionality from the navbar:
+
+![Admin dropdown menu](/static/images/readme/admin-navbar.png)
+
+## Routes Page
+
+The Routes pages provides all available routes by departure and destination. The page is responsive and scalable. On larger screens there are four route cards across the page. On medium size screens this reduces to two and on smaller screens, like mobiles, this reduces to one. As new routes are added and published these will be added as Route Cards to the existing screen. Currently there is no limit to the number that would be displayed and there is no pagination. Pagination would have to be considered if the UX becomes impacted by the inclusion of too many routes.
+
+Each Route is presented on a Route Card which includes the departure and destination locations, a description of the route, the duration, the distance and the option to click through to view available trips on that route.
+
+![Routes page](/static/images/readme/routes-page.png)
+
+## Trips Page
+
+The Trips pages provides information on all available trips on a given route. The page is responsive and scalable. On larger screens there are four trip cards across the page. On medium size screens this reduces to two and on smaller screens, like mobiles, this reduces to one. As new trips are added and published these will be added as Trip Cards to the existing screen. Currently there is no limit to the number that would be displayed and there is no pagination. Pagination would have to be considered if the UX becomes impacted by the inclusion of too many trips on a given route.
+
+Each Trip is presented on a Trip Card which includes the trip date, a description of the trip, the option to click through to express interest in booking. Users must have an account and be logged in to be directed to the Booking page. If users are not authenticated they will be redirected to the login page on clicking the button. If users are not yet registered, there is a link in the login to register first.
+
+![Trips page](/static/images/readme/trips-page.png)
+
+## Booking Page
+
+Users must be authenticated to access the Booking page. The Booking page can only be accessed via the specific trip being booked. The Booking page provides a booking form for user completion. 
+
+The date, route name and username fields are auto-completed for the specific trip chosen by the user. These fields cannot be changed.
+
+The user must enter a total number of passengers for the booking. There are criteria choices for type of cabin (private or shared) and sailing experience (none/some/lots). There are text fields for Special Assistance Needs and Additional Comments - both of these fields can be left blank and both can be edited by the user later.
+
+![Booking page 1](/static/images/readme/booking-page-1.png)
+![Booking page 2](/static/images/readme/booking-page-2.png)
+
+The submit button has a hover affect to provide user feedback:
+
+![Booking button](/static/images/readme/booking-page-3.png)
+
+## Account Page
+
+Authenticated users have access to an Account page, through which they can manage their account. Users are able to edit and delete their account details. Users can edit their first name, last name and email. These details are all requested at registration, but are not required. If these were not input at registration the fields will be blank. Users cannot change their username to prevent database errors. 
+
+![Account information](/static/images/readme/account-page-1.png)
+
+The bio and sailing experience information is not requested at registration. This profile information is created at the same time as the user account is created. The bio field will be blank, whilst the sailing experience field will default to None. These can both be edited.
+
+Deletion will wipe all records for the users.
+
+![Account deletion information](/static/images/readme/account-page-2.png)
+
+There is also a My Trips section on the account page. If the user has not booked any trips this section will be blank and there is a message to tell the user that trips will appear once they have made a booking.
+
+![My Trips information](/static/images/readme/account-page-3.png)
+
+Each Booking can be edited or deleted. The same Booking fields are editable as at the time of making the booking. Deletion will wipe the Booking from the database and cannot be undone, but a new booking could be made.
+
+![Booking deletion information](/static/images/readme/account-page-4.png)
+
+## Admin Panel, Add Route and Add Trip Pages
+
+Authenticated superusers have access to an Admin Panel which provides feedback on User Bookings as well as full CRUD functionality through the frontend. 
+
+The User Bookings Summary table shows the site admin how many users have made bookings for each trip on each route. This information is linked to the database records and updates automatically as a user adds a booking. This is the number of users that have booked a trip, not the total number of passengers.
+
+![Total User Bookings](/static/images/readme/admin-page-1.png)
+
+All Routes are summarised in the Admin Panel page by Route Name, Description, Duration, Distance and Status. All Routes are shown whether draft (not displayed on the routes page) or published (displayed on the routes page). 
+
+![Admin Route Information](/static/images/readme/admin-page-2.png)
+
+All Trips are summarised in the Admin Panel page by Trip Date, Route Name, Description and Status. All Routes are shown whether draft (not displayed on the routes page) or published (displayed on the routes page). 
+
+![Admin Trip Information](/static/images/readme/admin-page-3.png)
+
+All Route and Trip information can be edited. This is an example from the Edit Route page:
+
+![Edit Route Information](/static/images/readme/admin-page-4.png)
+
+All Routes and Trips can be deleted. There is a confirmation step for Route and/or Trip deletion. This is an example for a Route deletion:
+
+![Delete Route Information](/static/images/readme/admin-page-5.png)
+
+New Routes and Trips can be added to the database from the frontend. The Add Route and Add Trip pages can be accessed from the Admin dropdown in the navbar. Once added, the Routes and Trips will be included in the Admin Panel Page. Here is an example from the Add Route page:
+
+![Add Route Information](/static/images/readme/admin-page-6.png)
 
