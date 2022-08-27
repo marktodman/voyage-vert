@@ -22,7 +22,7 @@ The [GitHub repository.](https://github.com/marktodman/voyage-vert)
 
 ## VOYAGEVERT CONCEPT
 
-The concept for the VoyageVert web application comes from a need to validate an existing business idea, which has been worked on with the business owner's permission. The existing website for [VoyageVert](www.voyagevert.org) set outs the business vision for a future of sustainable ocean travel using high-speed yachts to replace air travel. One key aspect to moving the business forward is to demonstrate the demand for the service to investors.
+The concept for the VoyageVert web application comes from a need to validate an existing business idea, which has been worked on with the business owner's permission. The existing website for the [VoyageVert](https://www.voyagevert.org/) business set outs the vision for a future of sustainable ocean travel using high-speed yachts. One key aspect to moving the business forward is to demonstrate the demand for the service to investors.
 
 This VoyageVert web application concept is to present a showcase of potential routes and trips to interested potential users of the business and gather user information to validate the business concept. The web app can be used as a landing page as part of a marketing campaign to engage users, gather user information and to test consumer interest in certain routes of travel and potential dates of travel using zero-carbon sea travel instead of air travel. The focus for this VoyageVert application is to focus in on user interest in particular routes and trips, generating expressions of interest can then be actioned by the business owners.
 
@@ -89,7 +89,7 @@ Initially, a number of Epics were determined, which led to the creation of a num
 4. As a Site User I would like to be able to manage my account information so that I can make changes if my details or requirements change.
 
 
-These Epics were then broken down into more detailed User Stories. The User Stories were produced using the [GitHub Issuses](https://github.com/marktodman/voyage-vert/issues) functionality in the repo where all User Stories can be reviewed.
+These Epics were then broken down into 21 more detailed User Stories. The User Stories were produced using the [GitHub Issuses](https://github.com/marktodman/voyage-vert/issues) functionality in the repo where all User Stories can be reviewed.
 
 ### Agile Development Tools
 

@@ -11,6 +11,7 @@ SAILING_EXPERIENCE = ((0, "None"), (1, "Some"), (2, "Lots"))
 
 
 class Route(models.Model):
+    """Route Model"""
     route_name = models.CharField(
         'Route Name', max_length=200, blank=False, unique=True)
     description = models.TextField('Description', blank=False)
@@ -21,13 +22,16 @@ class Route(models.Model):
     featured_image = CloudinaryField('Image', default='placeholder')
 
     class Meta:
+        """Order routes by Route Name"""
         ordering = ['route_name']
 
     def __str__(self):
-        return self.route_name
+        """Return Route Name as the Route object"""
+        return str(self.route_name)
 
 
 class Trip(models.Model):
+    """Trip Model"""
     trip_date = models.DateField('Trip Date')
     route_name = models.ForeignKey(
         Route, on_delete=models.CASCADE, blank=False, null=True)
@@ -37,16 +41,16 @@ class Trip(models.Model):
         User, related_name='trip_interest', blank=True)
 
     class Meta:
+        """Order Trips by trip date"""
         ordering = ['trip_date']
 
     def __str__(self):
+        """Return Trip Date as the Trip object"""
         return str(self.trip_date)
-
-    def expressions_of_interest(self):
-        return self.interest.count()
 
 
 class Profile(models.Model):
+    """Profile Model"""
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     bio = models.TextField('Bio', blank=True)
     sailing_exp = models.IntegerField(
@@ -54,6 +58,7 @@ class Profile(models.Model):
 
     # Automatically create a Profile when adding a new user
     def create_profile(sender, **kwargs):
+        """Create Profile as a User is created"""
         user = kwargs["instance"]
         if kwargs["created"]:
             user_profile = Profile(user=user)
@@ -61,10 +66,12 @@ class Profile(models.Model):
     post_save.connect(create_profile, sender=User)
 
     def __str__(self):
+        """Return User for the Profile object"""
         return str(self.user)
 
 
 class Booking(models.Model):
+    """Booking Model"""
     trip_date = models.ForeignKey(
         Trip, on_delete=models.CASCADE, blank=False, null=True)
     route_name = models.ForeignKey(
@@ -84,7 +91,9 @@ class Booking(models.Model):
         'Any additional comments', blank=True)
 
     class Meta:
+        """Order Bookings by trip date"""
         ordering = ['trip_date']
 
     def __str__(self):
+        """Return Route Name as the object"""
         return str(self.route_name)
