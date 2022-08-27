@@ -53,6 +53,8 @@ To create a web application that engages users in providing feedback on particul
 ---
 ## STRUCTURE
 
+### Functional Structure
+
 1. LANDING PAGE: the home page contains a clear mission statement and instructions to get started with on the application. At this point the user can link straight to the content or registration. Returning users can login from the landing page. Register and Login are also available from the Navbar.
 2. ROUTES PAGE: a responsive list of cards that details the routes (departure and destination) available. Each Route card has information about the duration and the distance of the route, together with a description. The Routes page can be accessed directly through the Navbar. This page is responsive and scalable and will grow as more Routes are added.
 3. TRIPS PAGES: Trips pages are dynamically linked to the Routes, dsiplaying trip dates available on each Route as Trip cards. Trips are available through a dropdown on the main Navbar and are listed by Route. Only available (published) Trips for each Route will be displayed on the Trips page. There will be a message on the page if no Trips are available, together with a link to return to the Routes page. This page is responsive and scalable and will grow as more trips are added.
@@ -69,6 +71,23 @@ To create a web application that engages users in providing feedback on particul
 <br>
 
 ![VoyageVert Function Structure](/static/images/readme/voyagevert-flowchart.png)
+</details>
+<br>
+
+### Database Structure
+
+Four customer models were created to produce the required database structure. 
+
+1. ROUTE MODEL: The Route Model contains all the information for a specific route. This model has the route name (departure and destination), description, duration, distance, status and featured image.
+2. TRIP MODEL: The Trip Model creates a trip linked to a Route by the route name. The Trip model also has fields for description, status and interest.
+3. BOOKING MODEL: The Booking Model creates a booking linked to a Trip by the date and a Route by the route name. The Booking Model is also linked to the User Model through the passenger field. There is additional information for total number of passengers, cabin type, crew option, sailing experience, special assistance needs and comments.
+4. PROFILE MODEL: The Profile Model has a OneToOne relationship with the User Model and associated Bio and Sailing Experience information with the User.
+
+<details>
+<summary><strong>Entity Relationship Diagram (ERD)</strong></summary>
+<br>
+
+![VoyageVert ERD](/static/images/readme/voyagevert-erd.png)
 </details>
 <br>
 
