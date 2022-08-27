@@ -8,7 +8,7 @@
         <!-- Route information -->
         <h2 class="mb-3">Edit Route: {{ route.route_name }}</h2>
         <!-- Route form -->
-        <form action="" method="POST" class="form-link"  enctype="multipart/form-data">
+        <form method="POST" class="form-link"  enctype="multipart/form-data">
             {% csrf_token %}
 
             {{ form | crispy }}

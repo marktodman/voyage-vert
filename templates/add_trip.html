@@ -16,7 +16,7 @@
         {% else %}
         <!-- Add Route Form -->
         <h1 class="mb-3">Add a Trip to the Database</h1>
-        <form action="" method="POST">
+        <form method="POST">
             {% csrf_token %}
 
             {{ form | crispy }}

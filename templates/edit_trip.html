@@ -8,7 +8,7 @@
         <!-- Trip information -->
         <h2 class="mb-3">Edit {{ trip.route_name }} trip scheduled for {{ trip.trip_date }}</h2>
         <!-- Trip form -->
-        <form action="" method="POST" class="form-link">
+        <form method="POST" class="form-link">
             {% csrf_token %}
 
             {{ form | crispy }}

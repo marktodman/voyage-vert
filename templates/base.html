@@ -75,11 +75,11 @@
                     <!-- Admin functions for Superusers -->
                     {% if user.is_superuser %}
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="{% url 'routes' %}" id="navbarScrollingDropdown"
+                        <a class="nav-link dropdown-toggle" href="{% url 'routes' %}" id="navbarScrollingDropdown1"
                             role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Admin
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarScrollingDropdown">
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarScrollingDropdown1">
                             <li><a class="dropdown-item" href="{% url 'admin-panel' %}">Admin Panel</a>
                             </li>
                             <li><a class="dropdown-item" href="{% url 'add-route' %}">Add Route</a>

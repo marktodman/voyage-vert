@@ -16,7 +16,7 @@
                     <a class="btn btn-primary mx-auto" href="{% url 'profile' %}" role="button">Return to Account
                         without Deleting</a>
                     <!-- Confirm deletion -->
-                    <form action="" method="POST" class="form-link">
+                    <form method="POST" class="form-link">
                         {% csrf_token %}
                         <input class="btn btn-danger mb-2 mt-3" type="submit" value="Delete">
                     </form>

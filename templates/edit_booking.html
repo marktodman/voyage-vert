@@ -7,7 +7,7 @@
     <div class="text-white text-center">
         <h2 class="mb-3">Edit your booking</h2>
         <!-- Booking form -->
-        <form action="" method="POST" class="form-link"  enctype="multipart/form-data">
+        <form method="POST" class="form-link"  enctype="multipart/form-data">
             {% csrf_token %}
 
             {{ form | crispy }}
