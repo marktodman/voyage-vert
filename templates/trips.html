@@ -10,17 +10,16 @@
                 {% if not trips %}
                 <h4>Sorry, there are no available trips for {{ route_name }} <a class="btn btn-dark m-2"
                         href="{% url 'routes' %}" role="button">View Routes</a></h4>
+                {% endif %}
             </div>
         </div>
     </div>
 </div>
-
-{% endif %}
 <!-- Trip Cards-->
 <div class="container">
     <div class="row">
         {% for trip in trips %}
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-3 col-md-6 my-3">
             <div class="card h-100">
                 {% if "placeholder" in route_image.url %}
                 <img class="card-img-top image-responsive"
