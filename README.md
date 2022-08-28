@@ -162,6 +162,8 @@ Route and trip cards were chosen to be white to allow the important information 
 
 Buttons were styled to standout with hover actions to provide user feedback. All delete or cancel buttons were styled in red as a widely accepted color to direct user caution.
 
+Two fonts were chosen for the site using [Google Fonts](https://fonts.google.com/). Oleo Script Swash Caps was used for the VoyageVert logo present of every page. Catamaran was used for the text for the Navbar and main site content throught the site to satisfy the UX objectives.
+
 ---
 ## PLANNING
 
@@ -186,6 +188,8 @@ Initially, a number of Epics were determined, which led to the creation of a num
 
 These Epics were then broken down into 21 more detailed User Stories. The User Stories were produced using the [GitHub Issuses](https://github.com/marktodman/voyage-vert/issues) functionality in the repo where all User Stories can be reviewed.
 
+Each User Story consisted of a number of tasks to ensure completion. These tasks were identified for each User Story and worked through to completion of the User Story.
+
 ### Agile Development Tools
 
 The [GitHub Issuses](https://github.com/marktodman/voyage-vert/issues) were then prioritised using the [Project Kanban Board](https://github.com/users/marktodman/projects/3) within the repo. User Stories were moved through the process from To do >> In Progress >> Done on the Kanban Board.
@@ -201,12 +205,16 @@ Detailed descriptions of the Agile Development Process and Agile Development Exp
 At the start of the project all User Stories were prioritised in the Product Backlog. All User Stories were assigned a User Story Point estimation to allow Time Boxing. The project was then split into four Iterations, with each Iteration lasting one week. It was estimated that each week a total of 10 story points could be completed. Initially, a total of 46 story points were identified, which meant that it was possible some functionality may not be completed. 
 <br>
 <br>
-At the start of each week, User Stories were prioritised into the corresponding Iteration sheet on the basis of 60% Must Have allocation for the Iteration. 20% were allocated Could Have, leaving 20% Should Have based on the prioritsed Product Backlog. At the end of each Iteration, progress was reviewed to ensure Story Point estimation was appropriate. Prioritisation was also reviewed to ensure that all aspects of the project were completed in time to ship the project to meet the deadline.
+At the start of each week, User Stories were prioritised into the corresponding Iteration sheet on the basis of 60% Must Have allocation for the Iteration. 20% were allocated Could Have, leaving 20% Should Have based on the prioritsed Product Backlog. Tasks were identified for each User Story and steadily worked through during the Iteration. At the end of each Iteration, progress was reviewed to ensure Story Point estimation was appropriate. Prioritisation was also reviewed to ensure that all aspects of the project were completed in time to ship the project to meet the deadline. The results of these Iteration reviews are documented in the Google Sheets workbooks accessible via the link below: 
+<br>
+<br>
+
+[Agile Development Documents.](https://drive.google.com/drive/folders/1qUzzt05p5ZK3oxgmrcyhPj-C4_KSk1UD?usp=sharing)
 <br>
 </details>
 <br>
 <details>
-<summary><strong>Agile Development Experience</strong></summary>
+<summary><strong>Agile Development Review</strong></summary>
 <br>
 Generally, Story Point estimation was found to be reasonable on a week by week basis. All Must Have User Stories were completed in each Iteration. All Should Have User Stories were also completed in each Iteration. In most Iterations, all Could Haves were also completed. This was due to the creation of capacity to complete the User Stories in the Iteration, rather than poor estimation of the Story Points.
 <br>
@@ -326,3 +334,5 @@ New Routes and Trips can be added to the database from the frontend. The Add Rou
 
 ---
 ## TESTING
+
+Automated and Manual Testing was undertaken across the application. The results are presented in the [Testing markdown document located in the GitHub repo.](testing.md)
