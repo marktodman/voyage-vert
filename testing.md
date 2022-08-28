@@ -48,17 +48,18 @@ During testing a number of issues were identified and addressed to improve perfo
 
 The HTML code has been tested for errors with the [W3 HTML Validator](https://validator.w3.org/nu/?showsource=yes&showoutline=yes&showimagereport=yes&doc=https%3A%2F%2Fvoyagevert.herokuapp.com%2F) and passed with no errors.
 
-The HTML of each page on the site was manually accessed through Chrome View Page Source. The HTML was copied and pasted into the Nu HTML Checker. All pages pass with no errors or warnings.
+The HTML of each page of the site was manually accessed through Chrome View Page Source. The HTML was copied and pasted into the Nu HTML Checker. All pages pass with no errors or warnings.
 
 During testing a number of issues were identified and corrected:
 
 - Aria-controls description needed to match the data-bs-target for the navbar toggle
+- Change repeat id tags for the two dropdown menus
 - Update form action to pass validation
-- Adjust location of endif statement to ensure closing div tags rendered correctly
+- Adjust location of endif statement to ensure closing div tags rendered correctly in all views
 
 ## CSS Validation
 
-The custom CSS file locate in the static folder was tested using the [W3 CSS Validator](https://jigsaw.w3.org/css-validator/validator) via direct code input and no errors were found:
+The custom CSS file located in the static folder was tested using the [W3 CSS Validator](https://jigsaw.w3.org/css-validator/validator) via direct code input and no errors were found:
 
 ![W3C CSS Validation](/static/images/testing/w3c-css-validation.png)
 
@@ -107,7 +108,7 @@ During testing a few issues were identified and corrected:
 - Extra whitespace was deleted
 - Indentation was corrected
 - Two lines spaces between functions and classes
-- All lines adjusted to <80 characters. Except one in the URLS which remains at 82 characters. The hashtag noqa was applied to pass the PEP8 validation as code readability was not an issue.
+- All lines adjusted to <80 characters. Except one in the urls.py which remains at 82 characters. The hashtag noqa was applied to pass the PEP8 validation as code readability was not an issue.
 
 ---
 ## AUTOMATED TESTING
@@ -123,6 +124,6 @@ A coverage report was produced to identify areas covered by automated testing an
 ---
 ## MANUAL TESTING
 
-Thorough manual testing was undertaken throughout production. In final manual testing 56 different test cases were analysed to ensure all testing criteria were satisfied.
+Thorough manual testing was undertaken throughout production. During final manual testing, 56 different test cases were analysed to ensure all testing criteria were satisfied.
 
-The full results of manual testing are documented in here: [Manual Testing Documentation](https://drive.google.com/drive/folders/1QCuFZbqjsvEpSDiCDNzbrCREvbGR0NGn?usp=sharing)
+The full results of manual testing are documented in here: [Manual Testing Documentation](https://docs.google.com/spreadsheets/d/10jtC0ANUu4_oC7cR7QaeMOU8aB2IvYqBj4g4CefscN8/edit#gid=0)
