@@ -57,7 +57,7 @@ class Profile(models.Model):
         'Previous Sailing Experience', choices=SAILING_EXPERIENCE, default=0)
 
     # Automatically create a Profile when adding a new user
-    def create_profile(sender, **kwargs): # noqa
+    def create_profile(sender, **kwargs):
         """Create Profile as a User is created"""
         user = kwargs["instance"]
         if kwargs["created"]:

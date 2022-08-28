@@ -7,10 +7,12 @@ class RouteAdmin(admin.ModelAdmin):
 
     list_display = ('route_name', 'status')
 
+
 @admin.register(Trip)
 class TripAdmin(admin.ModelAdmin):
 
     list_display = ('route_name', 'trip_date')
+
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
@@ -19,6 +21,7 @@ class BookingAdmin(admin.ModelAdmin):
     ordering = ('passenger',)
     search_fields = ('passenger', 'route_name')
     list_filter = ('passenger', 'route_name', 'trip_date')
+
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):

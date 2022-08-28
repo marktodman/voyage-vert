@@ -1,5 +1,6 @@
 from .models import Route
 
+
 # Get a route information to use in multiple templates
 def get_routes(request):
 

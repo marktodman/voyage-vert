@@ -40,7 +40,7 @@ class TestModels(TestCase):
         self.assertEqual(self.booking.number_passengers, 2)
 
     def test_booking_is_created_using_route_trip_and_user_information(self):
-        """Test Booking Model uses foreign keys from 
+        """Test Booking Model uses foreign keys from
         Route, Trip and User Models"""
         self.assertEqual(self.booking.route_name, self.route)
         self.assertEqual(self.booking.trip_date, self.trip)

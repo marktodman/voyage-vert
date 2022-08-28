@@ -18,9 +18,9 @@ class TripForm(ModelForm):
         model = Trip
         fields = ('trip_date', 'route_name', 'description', 'status')
         widgets = {
-			'trip_date': forms.TextInput(attrs=
-            {'class': 'form-control', 'placeholder': 'YYYY-MM-DD'}),
-		}
+            'trip_date': forms.TextInput(
+                attrs={'class': 'form-control', 'placeholder': 'YYYY-MM-DD'}),
+                }
 
 
 # Create a new Booking
@@ -55,6 +55,7 @@ class CustomSignupForm(SignupForm):
 
         return user
 
+
 # User form
 class UserForm(forms.ModelForm):
     class Meta:
@@ -75,4 +76,4 @@ class UserForm(forms.ModelForm):
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ['bio','sailing_exp']
+        fields = ['bio', 'sailing_exp']

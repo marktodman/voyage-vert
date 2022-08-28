@@ -14,7 +14,7 @@ class HomePage(TemplateView):
     template_name = 'index.html'
 
 
-# Route View 
+# Route View
 class RouteList(ListView):
     """Create Route View"""
     model = Route
@@ -87,7 +87,7 @@ def delete_account(request):
 
 
 # Edit Account Information
-@login_required 
+@login_required
 def edit_account(request):
     """Authenticated user can edit their user information"""
 
@@ -98,8 +98,9 @@ def edit_account(request):
         if request.method == "POST":
             if form.is_valid():
                 form.save()
-                messages.success(request, (
-                'Success! Your information has been updated'))
+                messages.success(
+                    request,
+                    ('Success! Your information has been updated'))
                 return redirect('profile')
 
         context = {
@@ -110,7 +111,7 @@ def edit_account(request):
 
 
 # Edit Profile Information
-@login_required 
+@login_required
 def edit_profile(request):
     """Authenticated user can edit their additional Profile information"""
 
@@ -121,8 +122,9 @@ def edit_profile(request):
         if request.method == "POST":
             if form.is_valid():
                 form.save()
-                messages.success(request, (
-                'Success! Your additional profile information has been updated'))
+                messages.success(
+                    request,
+                    ('Success! Your profile information has been updated'))
                 return redirect('profile')
 
         context = {
@@ -148,7 +150,7 @@ def booking(request, trip_id):
                 'route_name': route_name,
                 'passenger': passenger,
             })
-                
+
             if form.is_valid():
                 form.save()
                 messages.success(request, (
@@ -182,7 +184,7 @@ def booking(request, trip_id):
 @login_required
 def edit_booking(request, trip_id):
     """Authenticated user can edit one of their expressions of interest"""
-    
+
     if request.user.is_authenticated:
         booking = Booking.objects.get(id=trip_id)
         form = BookingForm(request.POST or None, instance=booking)
@@ -243,7 +245,7 @@ def admin_panel(request):
     # This page can only be accessed by a superuser
     if request.user.is_superuser:
         routes = Route.objects.all()
-        trips = Trip.objects.all()        
+        trips = Trip.objects.all()
 
         # Number of bookings on each trip
         num_passenger = Trip.objects.annotate(num_pass=Count('booking'))
