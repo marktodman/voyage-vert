@@ -336,3 +336,51 @@ New Routes and Trips can be added to the database from the frontend. The Add Rou
 ## TESTING
 
 Automated and Manual Testing was undertaken across the application. The results are presented in the [Testing markdown document located in the GitHub repo.](testing.md)
+
+---
+## DEPLOYMENT
+
+The VoyageVert web app is deployed via [GitHub](https://github.com/) and [Heroku](https://www.heroku.com/).
+
+The deployed VoyageVert web app: [VoyageVert](https://voyagevert.herokuapp.com/)
+
+### GitHub Repository
+
+The code is located in a [GitHub repository](https://github.com/marktodman/voyage-vert).
+
+### Forking the GitHub Repository
+
+To use this code and make changes without affecting the original code, it is possible to 'fork' the code on the GitHub repository through the following steps:
+
+1. Create an account at [GitHub](https://github.com/).
+1. Log into your GitHub account.
+1. Go to the GitHub repository for [VoyageVert](https://github.com/marktodman/voyage-vert).
+1. Click the 'Fork' button in the upper right-hand corner of the page.
+1. A copy of the repository will be available in your own repository.
+
+### Heroku Deployment 
+
+The site is deployed to [Heroku](https://www.heroku.com) through the following steps:
+
+1. Log in to Heroku or create an account if required.
+1. On the Welcome page click the button labelled 'New' in the top right corner, just below the header.
+1. From the drop-down menu select 'Create new app'.
+1. Enter a unique app name. 
+1. Select the relevant geographical region.
+1. Click to 'Create App'.
+1. Navigate to 'Settings' and scroll down to the 'Config Vars' section. 
+1. Click 'Reveal Config Vars' and enter 'PORT' for the key and '8000' for the value. Then click 'Add'.
+1. Add CLOUDINARY_URL, DATABSE_URL and SECRET_KEY.
+1. Click on the 'Deploy' tab.
+1. Next to 'Deployment method' select 'GitHub'.
+1. Connect the relevant GitHub repository.
+1. Under 'Manual deploy' choose the correct branch and click 'Deploy Branch'. 
+1. Under 'Automatic deploys' you can select 'Automatic Deploys' so that the site updates when updates are pushed to GitHub.
+
+---
+## FUTURE DEVELOPMENT IDEAS
+
+
+
+---
+## CREDITS
