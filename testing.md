@@ -110,14 +110,19 @@ During testing a few issues were identified and corrected:
 - All lines adjusted to <80 characters. Except one in the URLS which remains at 82 characters. The hashtag noqa was applied to pass the PEP8 validation as code readability was not an issue.
 
 ---
-## MANUAL TESTING
-
-
----
 ## AUTOMATED TESTING
 
-Automated tests were created and run using unittest in addition to the manual testing. Thirteen automated tests were created and run to check returned results were as expected.
+Automated tests were created and run using unittest. Manual testing was undertaken to cover full functionality and cover aspects not covered by automated testing. Thirteen automated tests were created and run to check returned results were as expected.
 
 ![Automated Tests](/static/images/testing/automated-testing.png)
 
-A coverage report was produced to 
+A coverage report was produced to identify areas covered by automated testing and to ensure gaps in automated testing were covered by manual testing.
+
+![Coverage Report](/static/images/testing/testing-coverage.png)
+
+---
+## MANUAL TESTING
+
+Thorough manual testing was undertaken throughout production. In final manual testing 56 different test cases were analysed to ensure all testing criteria were satisfied.
+
+The full results of manual testing are documented in here: [Manual Testing Documentation](https://drive.google.com/drive/folders/1QCuFZbqjsvEpSDiCDNzbrCREvbGR0NGn?usp=sharing)
