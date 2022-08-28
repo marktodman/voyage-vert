@@ -5,8 +5,9 @@
 ## OVERVIEW
 1. [Performance and Accessibility](#performance-and-accessibility)
 1. [Validation](#validation)
-1. [Manual Testing](#manual-testing)
 1. [Automated Testing](#automated-testing)
+1. [Manual Testing](#manual-testing)
+
 ---
 ## PERFORMANCE AND ACCESSIBILITY
 
@@ -111,3 +112,12 @@ During testing a few issues were identified and corrected:
 ---
 ## MANUAL TESTING
 
+
+---
+## AUTOMATED TESTING
+
+Automated tests were created and run using unittest in addition to the manual testing. Thirteen automated tests were created and run to check returned results were as expected.
+
+![Automated Tests](/static/images/testing/automated-testing.png)
+
+A coverage report was produced to 
