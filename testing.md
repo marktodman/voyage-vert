@@ -47,7 +47,7 @@ During testing a number of issues were identified and addressed to improve perfo
 
 The HTML code has been tested for errors with the [W3 HTML Validator](https://validator.w3.org/nu/?showsource=yes&showoutline=yes&showimagereport=yes&doc=https%3A%2F%2Fvoyagevert.herokuapp.com%2F) and passed with no errors.
 
-The HTML of each page on the site was manually accessed through Chrome View Page Source. The HTML was copied and pasted into the Nu HTML Checker. All pages now pass with no errors or warnings.
+The HTML of each page on the site was manually accessed through Chrome View Page Source. The HTML was copied and pasted into the Nu HTML Checker. All pages pass with no errors or warnings.
 
 During testing a number of issues were identified and corrected:
 
@@ -62,6 +62,51 @@ The custom CSS file locate in the static folder was tested using the [W3 CSS Val
 ![W3C CSS Validation](/static/images/testing/w3c-css-validation.png)
 
 ## Python Validation (PEP8)
+
+All Python code was manually checked using [PEP8 Online](http://pep8online.com/). 
+
+Models:
+
+![Models PEP8 Validation](/static/images/testing/pep8-models-validation.png)
+
+URLS:
+
+![URLS PEP8 Validation](/static/images/testing/pep8-urls-validation.png)
+
+Views:
+
+![Views PEP8 Validation](/static/images/testing/pep8-views-validation.png)
+
+Forms:
+
+![Forms PEP8 Validation](/static/images/testing/pep8-forms-validation.png)
+
+Apps:
+
+![Apps PEP8 Validation](/static/images/testing/pep8-apps-validation.png)
+
+Admin:
+
+![Admin PEP8 Validation](/static/images/testing/pep8-admin-validation.png)
+
+Context Processors:
+
+![Context Processors PEP8 Validation](/static/images/testing/pep8-contextprocessors-validation.png)
+
+Test Models:
+
+![Test Models PEP8 Validation](/static/images/testing/pep8-testmodels-validation.png)
+
+Test Views:
+
+![Test Views PEP8 Validation](/static/images/testing/pep8-testviews-validation.png)
+
+During testing a few issues were identified and corrected:
+
+- Extra whitespace was deleted
+- Indentation was corrected
+- Two lines spaces between functions and classes
+- All lines adjusted to <80 characters. Except one in the URLS which remains at 82 characters. The hashtag noqa was applied to pass the PEP8 validation as code readability was not an issue.
 
 ---
 ## MANUAL TESTING
