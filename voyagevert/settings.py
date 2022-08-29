@@ -50,7 +50,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
-ACCOUNT_FORMS = {'signup': 'bookings.forms.CustomSignupForm',}
+ACCOUNT_FORMS = {'signup': 'bookings.forms.CustomSignupForm', }
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

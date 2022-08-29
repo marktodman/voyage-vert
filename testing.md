@@ -7,6 +7,7 @@
 1. [Validation](#validation)
 1. [Automated Testing](#automated-testing)
 1. [Manual Testing](#manual-testing)
+1. [Known Bugs](#known-bugs)
 
 ---
 ## PERFORMANCE AND ACCESSIBILITY
@@ -71,9 +72,13 @@ Models:
 
 ![Models PEP8 Validation](/static/images/testing/pep8-models-validation.png)
 
-URLS:
+Booking App URLS:
 
 ![URLS PEP8 Validation](/static/images/testing/pep8-urls-validation.png)
+
+VoyageVert Project URLS:
+
+![VoyageVert Project Urls PEP8 Validation](/static/images/testing/pep8-vvurls-validation.png)
 
 Views:
 
@@ -127,3 +132,11 @@ A coverage report was produced to identify areas covered by automated testing an
 Thorough manual testing was undertaken throughout production. During final manual testing, 56 different test cases were analysed to ensure all testing criteria were satisfied.
 
 The full results of manual testing are documented in here: [Manual Testing Documentation](https://docs.google.com/spreadsheets/d/10jtC0ANUu4_oC7cR7QaeMOU8aB2IvYqBj4g4CefscN8/edit#gid=0)
+
+---
+## KNOWN BUGS
+
+There are two known bugs, which are scheduled to be fixed in the next version:
+
+- For a Superuser only: when a superuser is on the Admin Panel page, the Trips navbar dropdown will display all Routes, whether these are draft or published. Clicking on a draft Route will display a 404 Error. This only occurs for a superuser and only when viewing the navbar Trips dropdown from the Admin Panel page. The navbar Trips dropdown does not display draft Routes for a superuser on any other page. This bug does not occur for authenticated users. A fix was not identified for this version. Authenticated user UX is not impacted and the site functions as expected.
+- Users are able to add more than one booking for a Trip. Multiple bookings does not impact site functionality, but removing the ability for a user to book the same trip twice would improve UX and the data generated from the site.
