@@ -293,7 +293,7 @@ Authenticated users have access to an Account page, through which they can manag
 
 The bio and sailing experience information is not requested at registration. This profile information is created at the same time as the user account is created. The bio field will be blank, whilst the sailing experience field will default to None. These can both be edited.
 
-Deletion will wipe all records for the users.
+Deletion will delete all records for the user.
 
 ![Account deletion information](/static/images/readme/account-page-2.png)
 
@@ -431,11 +431,12 @@ Images were all open source and free to use from [Pexels](https://www.pexels.com
 [Stack Overflow](https://stackoverflow.com/) was helpful in the resolution of a number of specific issues, including:
 - Early errors in database schema associated with relationships between models - resolved by [zeroing and making new migrations](https://stackoverflow.com/questions/58000680/django-safely-remove-old-migrations) 
 - Issue with non-string type datetime.date - resolved by [applying str()](https://stackoverflow.com/questions/64976269/str-returned-non-string-type-datetime-date)
-- Accessing variables across templates resolved by [creating a context_processor.py file](https://www.skillsugar.com/how-to-create-context-processor-in-django)
+
 - Getting [card images to be the same size](https://stackoverflow.com/questions/37287153/how-to-get-images-in-bootstraps-card-to-be-the-same-height-width)
 - [How to populate a form](https://stackoverflow.com/questions/53075940/how-to-pre-populate-django-modelform-fields)
 
 Some other key challenges were overcome using information from other sources:
+- Accessing variables across templates resolved by [creating a context_processor.py file](https://www.skillsugar.com/how-to-create-context-processor-in-django)
 - [How to create a custom allauth form](https://www.geeksforgeeks.org/python-extending-and-customizing-django-allauth/)
 - [How to add a profile model](https://www.youtube.com/watch?v=Alua227cOmY&list=PLCC34OHNcOtr025c1kHSPrnP18YPB-NFi&index=27)
 - [Automatically applying the profile model when adding a new user](https://blog.khophi.co/extending-django-user-model-userprofile-like-a-pro/)
