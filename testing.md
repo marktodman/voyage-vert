@@ -14,7 +14,7 @@
 
 ## Lighthouse Reports
 
-All pages accessible from the Navbar to authenticated users and superusers were tested for Performance, Accessibility, Best Pracitices and SEO using Lighthouse in Chrome Developer Tools.
+All pages accessible from the Navbar to authenticated users and superusers were tested for Performance, Accessibility, Best Practices and SEO using Lighthouse in Chrome Developer Tools.
 
 Home Page:
 
@@ -60,7 +60,7 @@ During testing a number of issues were identified and corrected:
 
 ## CSS Validation
 
-The custom CSS file located in the static folder was tested using the [W3 CSS Validator](https://jigsaw.w3.org/css-validator/validator) via direct code input and no errors were found:
+The custom CSS file located in the static folder was tested using the [W3 CSS Validator](https://jigsaw.w3.org/css-validator/) via direct code input and no errors were found:
 
 ![W3C CSS Validation](/static/images/testing/w3c-css-validation.png)
 
@@ -113,7 +113,7 @@ During testing a few issues were identified and corrected:
 - Extra whitespace was deleted
 - Indentation was corrected
 - Two lines spaces between functions and classes
-- All lines adjusted to <80 characters. Except one in the urls.py which remains at 82 characters. The hashtag noqa was applied to pass the PEP8 validation as code readability was not an issue.
+- All lines adjusted to <80 characters. Except one in the booking app urls.py which remains at 82 characters. The hashtag noqa was applied to pass the PEP8 validation as code readability was not an issue.
 
 ---
 ## AUTOMATED TESTING
@@ -139,4 +139,4 @@ The full results of manual testing are documented in here: [Manual Testing Docum
 There are two known bugs, which are scheduled to be fixed in the next version:
 
 - For a Superuser only: when a superuser is on the Admin Panel page, the Trips navbar dropdown will display all Routes, whether these are draft or published. Clicking on a draft Route will display a 404 Error. This only occurs for a superuser and only when viewing the navbar Trips dropdown from the Admin Panel page. The navbar Trips dropdown does not display draft Routes for a superuser on any other page. This bug does not occur for authenticated users. A fix was not identified for this version. Authenticated user UX is not impacted and the site functions as expected.
-- Users are able to add more than one booking for a Trip. Multiple bookings does not impact site functionality or create errors, but removing the ability for a user to book the same trip twice would improve UX and the data generated from the site.
+- Users are able to add more than one booking for a Trip. Multiple bookings does not impact site functionality or create errors, but removing the ability for a user to express their interest in the same trip more than once would improve UX and the data generated from the site.
