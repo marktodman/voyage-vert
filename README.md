@@ -350,6 +350,8 @@ New Routes and Trips can be added to the database from the frontend. The Add Rou
 
 ## Programs
 
+- Heroku: Container-based cloud Platform used to deploy the VoyageVert app and host the Postgres database
+- Cloudinary: Cloud hosting platform used to host static CSS files and image urls
 - GitPod: Developer platform for managing code, files and version control
 - GitHub: Repository for all code. Also used to manage agile development approach
 - Google Sheets: Managing agile development approach and manual testing documentation
@@ -408,6 +410,7 @@ The site is deployed to [Heroku](https://www.heroku.com) through the following s
 There are a number of future development ideas to be deployed under future versions of the app:
 
 1. Add a Newsletter sign up to develop a community. 
+1. Custom 404 and other Error pages to improve UX. 
 1. Extend the profile information to include more user information and avatar.
 1. Automatically populate Booking forms with profile information to improve UX.
 1. Add a Bookings count to provide user feedback on popularity of certain Routes and Trips.
